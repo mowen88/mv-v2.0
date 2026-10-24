@@ -95,11 +95,12 @@ func _on_zone_banner_requested(zone_name:String, show_banner:bool) -> void:
 
 	# Reset visual state immediately in case an old one was partway through fading out
 	zone_label.text = zone_name
-	zone_label.position.x = banner_initial_x
+	zone_label.position.x = 260
 	zone_label.modulate.a = 0.0  # Start invisible, or 1.0 if you want it to pop
 	zone_label.visible = false
-
-	var target_x = banner_initial_x - zone_label.size.x
+	
+	var viewport_width = get_viewport().get_visible_rect().size.x
+	var target_x = viewport_width - zone_label.size.x
 
 	banner_tween = create_tween()
 	
