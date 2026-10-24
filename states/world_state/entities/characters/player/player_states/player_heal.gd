@@ -33,6 +33,12 @@ func handle_input(event: InputEvent) -> void:
 		audio_player.queue_free()
 		owner.heal_particles.visible = false
 		fsm.change_state("idle")
+
+func exit() -> void:
+	# Clean up particles and sound whenever we leave the heal state
+	owner.heal_particles.visible = false
+	owner.heal_particles.emitting = false
+	audio_player.queue_free()
 	
 func physics_update(delta: float) -> void:
 	

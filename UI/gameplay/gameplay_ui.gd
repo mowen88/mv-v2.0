@@ -99,8 +99,8 @@ func _on_zone_banner_requested(zone_name:String, show_banner:bool) -> void:
 	zone_label.modulate.a = 0.0  # Start invisible, or 1.0 if you want it to pop
 	zone_label.visible = false
 	
-	var viewport_width = get_viewport().get_visible_rect().size.x
-	var target_x = viewport_width - zone_label.size.x
+	var screen_width = get_viewport().get_visible_rect().size.x
+	var target_x = screen_width - zone_label.size.x
 
 	banner_tween = create_tween()
 	
