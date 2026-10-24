@@ -1,0 +1,116 @@
+[gd_scene format=3 uid="uid://b628jutnpyhgf"]
+
+[ext_resource type="Theme" uid="uid://bwyqxsqeh0mbb" path="res://UI/menu/menu_button_theme.tres" id="1_6hkyj"]
+[ext_resource type="Script" uid="uid://52fd48nsmpyy" path="res://UI/gameplay/PauseMenu/quests_scene.gd" id="1_lt2jl"]
+[ext_resource type="FontFile" uid="uid://qt065a2b84t8" path="res://UI/font/homespun.ttf" id="1_qd63c"]
+[ext_resource type="Texture2D" uid="uid://crwq0i4wen1xm" path="res://UI/gameplay/elements/quest_in_progress_icon.png" id="3_jlbjd"]
+[ext_resource type="Texture2D" uid="uid://cw3858mvo6wr7" path="res://UI/gameplay/elements/quest_completed_icon.png" id="4_xbbp2"]
+[ext_resource type="Script" uid="uid://bdusirqn4e83o" path="res://UI/gameplay/PauseMenu/scroll_container.gd" id="5_xbbp2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jlbjd"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 9
+border_width_top = 9
+border_width_right = 9
+border_width_bottom = 9
+border_color = Color(1, 1, 1, 1)
+expand_margin_left = 28.0
+expand_margin_top = 24.0
+expand_margin_right = 24.0
+expand_margin_bottom = 24.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xbbp2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_axwab"]
+
+[node name="QuestsScene" type="Control" unique_id=1476503916]
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_6hkyj")
+script = ExtResource("1_lt2jl")
+ICON_IN_PROGRESS = ExtResource("3_jlbjd")
+ICON_COMPLETED = ExtResource("4_xbbp2")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=683561561]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -1120.0
+offset_top = 80.0
+offset_right = 1120.0
+offset_bottom = 780.0
+grow_horizontal = 2
+theme_override_constants/separation = 90
+
+[node name="ScrollPanel" type="Panel" parent="HBoxContainer" unique_id=1606789066]
+custom_minimum_size = Vector2(1170, 700)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jlbjd")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/ScrollPanel" unique_id=1017672852]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -585.0
+offset_right = 585.0
+offset_bottom = 700.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_xbbp2")
+theme_override_styles/focus = SubResource("StyleBoxFlat_axwab")
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+scroll_hint_mode = 1
+script = ExtResource("5_xbbp2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ScrollPanel/ScrollContainer" unique_id=1629452497]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_6hkyj")
+theme_override_constants/separation = 45
+
+[node name="DetailPanel" type="VBoxContainer" parent="HBoxContainer" unique_id=2025472099]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 45
+
+[node name="TitleLabel" type="Label" parent="HBoxContainer/DetailPanel" unique_id=1669765906]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_qd63c")
+theme_override_font_sizes/font_size = 90
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="StatusLabel" type="Label" parent="HBoxContainer/DetailPanel" unique_id=1994438303]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_qd63c")
+theme_override_font_sizes/font_size = 45
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="DescriptionLabel" type="Label" parent="HBoxContainer/DetailPanel" unique_id=502547901]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_qd63c")
+theme_override_font_sizes/font_size = 45
+text = "
+"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="RewardLabel" type="Label" parent="HBoxContainer/DetailPanel" unique_id=722464719]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_qd63c")
+theme_override_font_sizes/font_size = 45
+text = "
+"
+vertical_alignment = 1
+autowrap_mode = 3

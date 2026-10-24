@@ -1,0 +1,270 @@
+[gd_scene format=3 uid="uid://de408da02oa4h"]
+
+[ext_resource type="AudioStream" uid="uid://dnxopskch5bnb" path="res://UI/menu/audio/ui_Accept_sound.mp3" id="2_6numo"]
+[ext_resource type="Texture2D" uid="uid://dnta3fpggaj57" path="res://UI/gameplay/elements/close_button.png" id="2_knvk0"]
+[ext_resource type="FontFile" uid="uid://qt065a2b84t8" path="res://UI/font/homespun.ttf" id="2_s3d7j"]
+[ext_resource type="PackedScene" uid="uid://cqfdf5ey535l" path="res://UI/menu/menu_manager.tscn" id="3_knvk0"]
+[ext_resource type="Theme" uid="uid://bwyqxsqeh0mbb" path="res://UI/menu/menu_button_theme.tres" id="3_twydy"]
+[ext_resource type="PackedScene" uid="uid://b628jutnpyhgf" path="res://UI/gameplay/PauseMenu/quests_scene.tscn" id="4_p7u3h"]
+[ext_resource type="Texture2D" uid="uid://cvs22kboaslif" path="res://UI/gameplay/elements/close_button_pressed.png" id="6_fsspa"]
+
+[sub_resource type="GDScript" id="GDScript_o4h8b"]
+script/source = "extends CanvasLayer
+
+signal unpause_requested
+
+@export var tab_switch_sound: AudioStream
+
+@onready var tab_header_bar: HBoxContainer = $Control/VBoxContainer/TabHeaderBar
+@onready var content_container: Control = $Control/VBoxContainer/TabContentContainer
+@onready var menu_manager: Control = $Control/VBoxContainer/TabContentContainer/SystemPanel/MenuAnchor/MenuManager
+@onready var tab_underline: Control = $Control/VBoxContainer/TabHeaderBar/TabUnderline
+@onready var close_button: TextureButton = $CloseButton
+
+@onready var quest_scene: Control = $Control/VBoxContainer/TabContentContainer/QuestsPanel/QuestsScene
+
+var tabs: Array[Control] = []
+var active_tween: Tween
+
+# Remember the last opened tab across pauses (default to System, which is index 3)
+static var last_tab_index: int = 3
+
+func _ready() -> void:
+	# Connect unpause signal to close button
+	close_button.pressed.connect(func(): unpause_requested.emit())
+	
+	# Gather all tab control children from the content container
+	for child in content_container.get_children():
+		if child is Control:
+			tabs.append(child)
+	
+	# Connect the header buttons and make them flat by default
+	var buttons = tab_header_bar.get_children()
+	for i in range(buttons.size()):
+		if buttons[i] is Button:
+			buttons[i].pressed.connect(_on_tab_button_pressed.bind(i))
+			buttons[i].flat = true
+			
+	# Initialize the menu manager ONCE right here when the overlay loads
+	if menu_manager:
+		menu_manager._initialize_menu(\"PauseMenu\")
+
+func open_inventory() -> void:
+	
+	quest_scene.update_current_details()
+	quest_scene.populate_quest_ui()
+	
+	# Instantly show the remembered tab
+	for i in range(tabs.size()):
+		if i == last_tab_index:
+			tabs[i].visible = true
+			tabs[i].modulate.a = 1.0
+		else:
+			tabs[i].visible = false
+			tabs[i].modulate.a = 0.0
+			
+	# Wait one frame for the HBoxContainer to calculate positions, then snap
+	_snap_underline_deferred(last_tab_index)
+
+func _snap_underline_deferred(tab_index: int) -> void:
+	await get_tree().process_frame
+	if not tab_underline:
+		return
+		
+	var target_button = tab_header_bar.get_child(tab_index) as Button
+	if target_button:
+		var underline_height = 3.0
+		tab_underline.position.x = target_button.position.x
+		tab_underline.size.x = target_button.size.x
+		tab_underline.size.y = underline_height
+		tab_underline.position.y = target_button.position.y + target_button.size.y - underline_height
+
+func switch_tab(new_index: int) -> void:
+	if new_index == last_tab_index:
+		return
+		
+	var old_tab = tabs[last_tab_index]
+	var new_tab = tabs[new_index]
+	
+	# Grab the target button directly using the index
+	var target_button = tab_header_bar.get_child(new_index) as Button
+			
+	last_tab_index = new_index
+	
+	# Play sound
+	AudioManager.play_sfx(tab_switch_sound)
+	
+	# Kill any active transition so they don't stutter
+	if active_tween and active_tween.is_running():
+		active_tween.kill()
+		
+	active_tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	
+	# Fade out old tab content / fade in new tab 
+	active_tween.tween_property(old_tab, \"modulate:a\", 0.0, 0.15)
+	new_tab.visible = true
+	new_tab.modulate.a = 0.0
+	active_tween.tween_property(new_tab, \"modulate:a\", 1.0, 0.15)
+	active_tween.chain().tween_callback(func(): old_tab.visible = false)
+	
+	# Animate the underline to slide, resize width, and align to the bottom of the button
+	if target_button and tab_underline:
+		var underline_height = 3.0
+		var target_x = target_button.position.x
+		var target_y = target_button.position.y + target_button.size.y - underline_height
+		var target_width = target_button.size.x
+		
+		active_tween.tween_property(tab_underline, \"position:x\", target_x, 0.2)
+		active_tween.tween_property(tab_underline, \"position:y\", target_y, 0.2)
+		active_tween.tween_property(tab_underline, \"size:x\", target_width, 0.2)
+		active_tween.tween_property(tab_underline, \"size:y\", underline_height, 0.2)
+
+func _on_tab_button_pressed(new_index: int) -> void:
+	if new_index == last_tab_index:
+		return
+	
+	switch_tab(new_index)
+"
+
+[node name="InventoryOverlay" type="CanvasLayer" unique_id=267181138]
+script = SubResource("GDScript_o4h8b")
+tab_switch_sound = ExtResource("2_6numo")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1878299833]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.88235295)
+
+[node name="Control" type="Control" parent="." unique_id=1974712213]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=228214554]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabHeaderBar" type="HBoxContainer" parent="Control/VBoxContainer" unique_id=1799099816]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_constants/separation = 80
+alignment = 1
+
+[node name="MapButton" type="Button" parent="Control/VBoxContainer/TabHeaderBar" unique_id=1456571202]
+layout_mode = 2
+theme = ExtResource("3_twydy")
+theme_override_fonts/font = ExtResource("2_s3d7j")
+theme_override_font_sizes/font_size = 90
+text = "Map"
+flat = true
+
+[node name="InventoryButton" type="Button" parent="Control/VBoxContainer/TabHeaderBar" unique_id=558864051]
+layout_mode = 2
+theme = ExtResource("3_twydy")
+theme_override_fonts/font = ExtResource("2_s3d7j")
+theme_override_font_sizes/font_size = 90
+text = "Inventory"
+flat = true
+
+[node name="QuestsButton" type="Button" parent="Control/VBoxContainer/TabHeaderBar" unique_id=1154818915]
+layout_mode = 2
+theme = ExtResource("3_twydy")
+theme_override_fonts/font = ExtResource("2_s3d7j")
+theme_override_font_sizes/font_size = 90
+text = "Quests"
+flat = true
+
+[node name="SystemButton" type="Button" parent="Control/VBoxContainer/TabHeaderBar" unique_id=1469800886]
+layout_mode = 2
+theme = ExtResource("3_twydy")
+theme_override_fonts/font = ExtResource("2_s3d7j")
+theme_override_font_sizes/font_size = 90
+text = "System"
+flat = true
+
+[node name="TabUnderline" type="ColorRect" parent="Control/VBoxContainer/TabHeaderBar" unique_id=1684136327]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+color = Color(1, 0.7411765, 0.43529412, 1)
+
+[node name="TabContentContainer" type="Control" parent="Control/VBoxContainer" unique_id=1810679076]
+layout_mode = 2
+
+[node name="MapPanel" type="Control" parent="Control/VBoxContainer/TabContentContainer" unique_id=1738415567]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InventoryPanel" type="Control" parent="Control/VBoxContainer/TabContentContainer" unique_id=1362808704]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="QuestsPanel" type="Control" parent="Control/VBoxContainer/TabContentContainer" unique_id=628508964]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_twydy")
+
+[node name="QuestsScene" parent="Control/VBoxContainer/TabContentContainer/QuestsPanel" unique_id=1476503916 instance=ExtResource("4_p7u3h")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SystemPanel" type="Control" parent="Control/VBoxContainer/TabContentContainer" unique_id=328616534]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuAnchor" type="Control" parent="Control/VBoxContainer/TabContentContainer/SystemPanel" unique_id=256643696]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 400.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuManager" parent="Control/VBoxContainer/TabContentContainer/SystemPanel/MenuAnchor" unique_id=1846845566 instance=ExtResource("3_knvk0")]
+layout_mode = 1
+
+[node name="CloseButton" type="TextureButton" parent="." unique_id=1068073704]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_bottom = 200.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource("2_knvk0")
+texture_pressed = ExtResource("6_fsspa")
+stretch_mode = 3

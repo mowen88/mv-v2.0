@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://dok3g7paayf8q"]
+
+[ext_resource type="Script" uid="uid://cbqtpis5y7yt5" path="res://states/world_state/world_state.gd" id="1_emvdf"]
+[ext_resource type="PackedScene" uid="uid://de408da02oa4h" path="res://UI/gameplay/PauseMenu/InventoryOverlay.tscn" id="2_0jlim"]
+[ext_resource type="AudioStream" uid="uid://citx3e07qf0e3" path="res://UI/menu/audio/short_button_sound.wav" id="2_2gmlf"]
+[ext_resource type="PackedScene" uid="uid://78wkklni1sfd" path="res://UI/gameplay/touch_controller.tscn" id="2_6c3gn"]
+[ext_resource type="Script" uid="uid://dyqtednoh4tfr" path="res://states/world_state/overlay_effects.gd" id="2_wdfha"]
+[ext_resource type="PackedScene" uid="uid://ywh0ibl4nbif" path="res://UI/gameplay/gameplay_ui.tscn" id="3_i7qgc"]
+[ext_resource type="PackedScene" uid="uid://c8kn5s416smcp" path="res://states/world_state/cutscenes/cutscene_overlay.tscn" id="3_i25gt"]
+[ext_resource type="PackedScene" uid="uid://cnru7g4rqfgo3" path="res://states/world_state/entities/characters/player/player.tscn" id="3_y6a8n"]
+[ext_resource type="Script" uid="uid://b7u862h5fmk67" path="res://states/world_state/camera/game_camera.gd" id="5_i7qgc"]
+[ext_resource type="Script" uid="uid://c2a1o2bydmifw" path="res://states/world_state/death_haze_canvas.gd" id="9_0jlim"]
+[ext_resource type="PackedScene" uid="uid://q5t07hhfj1o7" path="res://UI/gameplay/collect_ability_overlay.tscn" id="9_qsabb"]
+[ext_resource type="Shader" uid="uid://dpfthqu41ajhh" path="res://core/shaders/vignette_shader.gdshader" id="10_vaxcq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qsabb"]
+shader = ExtResource("10_vaxcq")
+shader_parameter/vignette_color = Color(0, 0, 0, 1)
+shader_parameter/vignette_intensity = 1.0
+shader_parameter/vignette_smoothness = 0.5
+
+[node name="WorldState" type="Node2D" unique_id=1906920684 groups=["player"]]
+process_mode = 3
+script = ExtResource("1_emvdf")
+pause_sound = ExtResource("2_2gmlf")
+
+[node name="OverlayEffects" type="CanvasLayer" parent="." unique_id=71559434]
+layer = 10
+script = ExtResource("2_wdfha")
+
+[node name="ColorRect" type="ColorRect" parent="OverlayEffects" unique_id=1507907730]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CutsceneOverlay" parent="." unique_id=86733968 node_paths=PackedStringArray("player") instance=ExtResource("3_i25gt")]
+player = NodePath("../Player")
+
+[node name="TouchController" parent="." unique_id=1149322206 instance=ExtResource("2_6c3gn")]
+layer = 9
+
+[node name="GameplayUI" parent="." unique_id=187525425 instance=ExtResource("3_i7qgc")]
+process_mode = 1
+
+[node name="DeathHazeCanvas" type="CanvasLayer" parent="." unique_id=940447391]
+script = ExtResource("9_0jlim")
+
+[node name="ColorRect" type="ColorRect" parent="DeathHazeCanvas" unique_id=1020691711]
+material = SubResource("ShaderMaterial_qsabb")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="InventoryOverlay" parent="." unique_id=267181138 instance=ExtResource("2_0jlim")]
+visible = false
+
+[node name="CollectAbilityOverlay" parent="." unique_id=1134863666 instance=ExtResource("9_qsabb")]
+
+[node name="CurrentRoom" type="Node2D" parent="." unique_id=1191198212]
+process_mode = 1
+
+[node name="GameCamera" type="Camera2D" parent="." unique_id=1355138718]
+process_mode = 1
+process_callback = 0
+position_smoothing_speed = 0.0
+script = ExtResource("5_i7qgc")
+follow_smoothing_speed = 8.0
+pan_smoothing_speed = 3.0
+
+[node name="Player" parent="." unique_id=1424915808 instance=ExtResource("3_y6a8n")]
+position = Vector2(-1, 0)

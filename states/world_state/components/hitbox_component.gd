@@ -1,0 +1,15 @@
+extends Area2D
+class_name HitboxComponent
+
+@export var damage_amount: int = 1
+@export var knockback_force: float = 200.0
+
+func _physics_process(_delta: float) -> void:
+	# Only check if this area is monitoring collisions
+	if not monitoring:
+		return
+	# Continuously check overlapping areas every physics frame	
+	for area in get_overlapping_areas():
+		if area is HurtboxComponent:
+			area.receive_damage(self, damage_amount, knockback_force)
+			

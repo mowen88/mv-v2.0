@@ -1,0 +1,169 @@
+extends Control
+
+const ITEM_ROW_SCENE = preload("res://UI/gameplay/PauseMenu/ItemRowScene.tscn")
+
+@export var select_sound: AudioStream
+
+@onready var ability_container: GridContainer = $HBoxContainer/StatusPanel/VBoxContainer/GridContainer
+@onready var items_container: VBoxContainer = $HBoxContainer/MidPanelVBox/ScrollPanel/ScrollContainer/VBoxContainer
+@onready var detail_title_label: Label = $HBoxContainer/DetailPanel/TitleLabel
+@onready var detail_description_label: Label = $HBoxContainer/DetailPanel/DescriptionLabel
+@onready var detail_sprite: AnimatedSprite2D = $HBoxContainer/DetailPanel/AnimationContainer/SpriteAnchor/AnimatedSprite2D
+
+@onready var game_time_label: Label = $HBoxContainer/StatusPanel/VBoxContainer/GameTimeLabel
+@onready var percent_complete_label: Label = $HBoxContainer/StatusPanel/VBoxContainer/PercentCompleteLabel
+@onready var currency_label: Label = $HBoxContainer/StatusPanel/VBoxContainer/CurrencyLabel
+
+# Track the currently selected button across the whole menu
+var selected_button: BaseButton = null
+
+# Map your ability keys directly to the TextureButton nodes in the scene tree
+@onready var ability_buttons: Dictionary = {
+	"Beam Blade": get_node_or_null("HBoxContainer/StatusPanel/VBoxContainer/GridContainer/BeamBladeSlot/TextureButton"),
+	"Glide": get_node_or_null("HBoxContainer/StatusPanel/VBoxContainer/GridContainer/GlideSlot/TextureButton"),
+	"Star Jump": get_node_or_null("HBoxContainer/StatusPanel/VBoxContainer/GridContainer/JumpAttackSlot/TextureButton"),
+	"Water Walk": get_node_or_null("HBoxContainer/StatusPanel/VBoxContainer/GridContainer/WaterWalkSlot/TextureButton"),
+	"Ground Slam": get_node_or_null("HBoxContainer/StatusPanel/VBoxContainer/GridContainer/GroundSlamSlot/TextureButton"),
+}
+	
+func _ready() -> void:
+	# Hide detail sprite animation initially until selected
+	detail_sprite.visible = false
+	# Connect the press signal for each ability button, passing both name and button reference
+	for ability_name in ability_buttons.keys():
+		var btn = ability_buttons[ability_name]
+		if btn is BaseButton:
+			btn.pressed.connect(_on_ability_button_pressed.bind(ability_name, btn))
+
+# Single func to run in the main inventory overlay when opening
+func update_current_details()-> void:
+	populate_abilities()
+	populate_items()
+
+func get_status_stats(player: Node2D) -> void:
+	var slot_data = SaveManager.SAVE_DATA[SaveManager.current_slot]
+	var slot_id = SaveManager.current_slot
+	
+	var string_time = SaveManager.get_game_time_as_string(slot_id)
+	game_time_label.text = "Time : " + string_time
+	
+	var percent_complete = SaveManager.get_completion_percent_as_string(slot_id)
+	percent_complete_label.text = "Completion : " + percent_complete
+	
+	var banked_coins = slot_data.get("coins", 0)
+	var unbanked_coins = player.current_coins if player else 0
+	var total_coins = banked_coins + unbanked_coins
+	currency_label.text = "Currency : %d " % total_coins
+
+func populate_abilities() -> void:
+	# Hide texture buttons by default when open inventory
+	for node in ability_buttons.values():
+		if node:
+			node.visible = false
+
+	var slot_data = SaveManager.SAVE_DATA[SaveManager.current_slot]
+	if not slot_data.has("abilities"):
+		return
+		
+	# Show matching texture button 
+	for ability_name in slot_data["abilities"].keys():
+		if slot_data["abilities"][ability_name] == true:
+			if ability_buttons.has(ability_name) and ability_buttons[ability_name] is Control:
+				ability_buttons[ability_name].visible = true
+
+func populate_items() -> void:
+	# 1. Clear out old item rows
+	for child in items_container.get_children():
+		child.queue_free()
+
+	if not SaveManager.SAVE_DATA.has(SaveManager.current_slot):
+		return
+		
+	var slot_data = SaveManager.SAVE_DATA[SaveManager.current_slot]
+	if not slot_data.has("items") or slot_data["items"].is_empty():
+		return
+		
+	var saved_items: Dictionary = slot_data["items"]
+	
+	# 2. Instantiate a fresh row for each collected item
+	for item_name in saved_items.keys():
+		var quantity = int(saved_items[item_name])
+		if quantity <= 0:
+			continue
+			
+		var row_instance = ITEM_ROW_SCENE.instantiate() as HBoxContainer
+		row_instance.mouse_filter = Control.MOUSE_FILTER_PASS
+		
+		var name_button = row_instance.get_node_or_null("ItemNameButton") as Button
+		var count_label = row_instance.get_node_or_null("ItemCountLabel") as Label
+		
+		if name_button:
+			name_button.text = item_name
+			# Connect the button press signal, passing item name and button reference
+			name_button.pressed.connect(_on_item_button_pressed.bind(item_name, name_button))
+			
+		if count_label:
+			count_label.text = "x %d " % quantity
+			
+		items_container.add_child(row_instance)
+
+func _on_item_button_pressed(item_name: String, btn: BaseButton) -> void:
+	
+	AudioManager.play_sfx(select_sound)
+	
+	_set_button_selected(btn)
+	
+	print("Clicked item button: ", item_name)
+	
+	if detail_title_label:
+		detail_title_label.text = item_name
+	
+	if detail_description_label:
+		if DialogueData.ITEM_DETAILS.has(item_name):
+			detail_description_label.text = DialogueData.ITEM_DETAILS[item_name]
+		else:
+			detail_description_label.text = "A mysterious item collected during your journey."
+	
+	if detail_sprite:
+		if detail_sprite.sprite_frames.has_animation(item_name):
+			detail_sprite.visible = true
+			detail_sprite.play(item_name)
+		else:
+			detail_sprite.visible = false
+			detail_sprite.stop()
+
+		
+func _on_ability_button_pressed(ability_name: String, btn: BaseButton) -> void:
+	
+	AudioManager.play_sfx(select_sound)
+	
+	_set_button_selected(btn)
+	
+	print("Clicked ability button: ", ability_name)
+	
+	if detail_title_label:
+		detail_title_label.text = ability_name
+		
+	if detail_description_label:
+		if DialogueData.ABILITY_DETAILS.has(ability_name):
+			detail_description_label.text = DialogueData.ABILITY_DETAILS[ability_name]
+		else:
+			detail_description_label.text = "A powerful unlocked ability."
+	
+	if detail_sprite:
+		if detail_sprite.sprite_frames.has_animation(ability_name):
+			detail_sprite.visible = true
+			detail_sprite.play(ability_name)
+		else:
+			detail_sprite.visible = false
+			detail_sprite.stop()
+
+# Universal handler to turn the clicked button yellow and reset all other menu buttons
+func _set_button_selected(clicked_button: BaseButton) -> void:
+	var all_buttons = find_children("*", "BaseButton", true, false)
+	for button in all_buttons:
+		if button == clicked_button:
+			button.modulate = Color8(255, 189, 111)
+		else:
+			button.modulate = Color.WHITE
+	selected_button = clicked_button

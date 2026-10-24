@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cfvigo6oh546p"]
+
+[ext_resource type="PackedScene" uid="uid://do0mpt67d3suc" path="res://states/world_state/components/interaction_component.tscn" id="1_43b8i"]
+[ext_resource type="Script" uid="uid://b3ib38tmk41ly" path="res://states/world_state/exits/door.gd" id="1_rv6ty"]
+[ext_resource type="Texture2D" uid="uid://dbxk0np3vhrfi" path="res://states/world_state/exits/door_sprite.png" id="2_an3bu"]
+
+[node name="Door" type="Sprite2D" unique_id=229081297]
+z_index = 1
+script = ExtResource("1_rv6ty")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=975723259]
+texture = ExtResource("2_an3bu")
+
+[node name="InteractionComponent" parent="." unique_id=108345276 instance=ExtResource("1_43b8i")]
+prompt_text = "Enter"
+
+[editable path="InteractionComponent"]

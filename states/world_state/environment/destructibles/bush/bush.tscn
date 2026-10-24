@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://dqxwt35304kb2"]
+
+[ext_resource type="Material" uid="uid://bu4tbilew6k7v" path="res://core/shaders/sprite_flash_shader.tres" id="1_jlnqd"]
+[ext_resource type="Texture2D" uid="uid://b3dtd44uij6xm" path="res://states/world_state/environment/destructibles/bush/bush_spritesheet.png" id="1_pe11j"]
+[ext_resource type="PackedScene" uid="uid://c6sj10estib1c" path="res://states/world_state/components/health_component.tscn" id="1_tqhje"]
+[ext_resource type="PackedScene" uid="uid://d2ib61tnh3i8s" path="res://states/world_state/components/flash_component.tscn" id="2_6opqc"]
+[ext_resource type="Script" uid="uid://b62pqgb4y0cyk" path="res://states/world_state/environment/destructibles/bush/bush.gd" id="2_s68ii"]
+[ext_resource type="PackedScene" uid="uid://d2h0ih21x6bqb" path="res://states/world_state/components/hurtbox_component.tscn" id="3_ae181"]
+[ext_resource type="AudioStream" uid="uid://mbawvpdxftq2" path="res://states/world_state/environment/destructibles/bush/bush_cut_sound.mp3" id="7_0jq24"]
+[ext_resource type="PackedScene" uid="uid://dduhheq66d0n2" path="res://states/world_state/components/squash_stretch_component.tscn" id="8_0jq24"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jq24"]
+atlas = ExtResource("1_pe11j")
+region = Rect2(0, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bij7f"]
+atlas = ExtResource("1_pe11j")
+region = Rect2(12, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvq7a"]
+atlas = ExtResource("1_pe11j")
+region = Rect2(24, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pgq0"]
+atlas = ExtResource("1_pe11j")
+region = Rect2(36, 0, 12, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rrfv5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0jq24")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bij7f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvq7a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pgq0")
+}],
+"loop": false,
+"name": &"default",
+"speed": 0.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0jq24"]
+size = Vector2(12, 12)
+
+[node name="Bush" type="Node2D" unique_id=706351147 groups=["energy_gaining"]]
+material = ExtResource("1_jlnqd")
+script = ExtResource("2_s68ii")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=177856894]
+position = Vector2(0, 6)
+sprite_frames = SubResource("SpriteFrames_rrfv5")
+offset = Vector2(0, -6)
+
+[node name="HealthComponent" parent="." unique_id=1333011245 instance=ExtResource("1_tqhje")]
+max_health = 3
+
+[node name="FlashComponent" parent="." unique_id=664279283 node_paths=PackedStringArray("sprite", "hurtbox_component") instance=ExtResource("2_6opqc")]
+sprite = NodePath("../AnimatedSprite2D")
+hurtbox_component = NodePath("../HurtboxComponent")
+
+[node name="HurtboxComponent" parent="." unique_id=580697701 node_paths=PackedStringArray("health_component") instance=ExtResource("3_ae181")]
+collision_layer = 9
+particle_name = "bush_leaves"
+sound = ExtResource("7_0jq24")
+health_component = NodePath("../HealthComponent")
+invincibility_duration = 0.25
+
+[node name="CollisionShape2D" parent="HurtboxComponent" index="0" unique_id=1684239352]
+shape = SubResource("RectangleShape2D_0jq24")
+
+[node name="SquashStretchComponent" parent="." unique_id=843710349 node_paths=PackedStringArray("sprite", "hurtbox_component") instance=ExtResource("8_0jq24")]
+sprite = NodePath("../AnimatedSprite2D")
+hurtbox_component = NodePath("../HurtboxComponent")
+
+[editable path="HurtboxComponent"]

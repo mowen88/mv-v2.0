@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://78wkklni1sfd"]
+
+[ext_resource type="Script" uid="uid://b6mc8f5msni0g" path="res://UI/gameplay/swipe_control.gd" id="1_36e3b"]
+[ext_resource type="Texture2D" uid="uid://dkgxcnc2rbe6" path="res://UI/gameplay/elements/left_button.png" id="1_hfat2"]
+[ext_resource type="Texture2D" uid="uid://dm3ws84jse2qg" path="res://UI/gameplay/elements/right_button.png" id="2_36e3b"]
+[ext_resource type="Texture2D" uid="uid://gwikt0ic7fle" path="res://UI/gameplay/elements/left_button_pressed.png" id="3_2s4e1"]
+[ext_resource type="Texture2D" uid="uid://b4lmlm2cy7vxk" path="res://UI/gameplay/elements/a_button.png" id="3_bw6v4"]
+[ext_resource type="Texture2D" uid="uid://lpkslhescquv" path="res://UI/gameplay/elements/b_button.png" id="4_0yjk1"]
+[ext_resource type="Texture2D" uid="uid://do0dddrw0sli8" path="res://UI/gameplay/elements/a_button_pressed.png" id="5_bw6v4"]
+[ext_resource type="Texture2D" uid="uid://c4m4umwy1ul4k" path="res://UI/gameplay/elements/right_button_pressed.png" id="5_frcm8"]
+[ext_resource type="Texture2D" uid="uid://bkhf6mjkwk8ux" path="res://UI/gameplay/elements/c_button.png" id="5_fsqso"]
+[ext_resource type="Texture2D" uid="uid://51sgw14yfqp7" path="res://UI/gameplay/elements/pause_button.png" id="6_hfat2"]
+[ext_resource type="Texture2D" uid="uid://csi5otlta3421" path="res://UI/gameplay/elements/b_button_pressed.png" id="9_db0do"]
+[ext_resource type="Texture2D" uid="uid://dxl0fig0if5ks" path="res://UI/gameplay/elements/c_button_pressed.png" id="11_40kr5"]
+[ext_resource type="Texture2D" uid="uid://4rqkpqy4uotw" path="res://UI/gameplay/elements/pause_button_pressed.png" id="13_yvgh5"]
+
+[node name="TouchController" type="CanvasLayer" unique_id=1149322206]
+layer = 100
+
+[node name="SwipeControl" type="Control" parent="." unique_id=282957557]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_36e3b")
+
+[node name="DPadGroup" type="Control" parent="." unique_id=1065386247]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftButton" type="TouchScreenButton" parent="DPadGroup" unique_id=935672647]
+modulate = Color(1, 1, 1, 0.5019608)
+position = Vector2(12, 92)
+texture_normal = ExtResource("1_hfat2")
+texture_pressed = ExtResource("3_2s4e1")
+passby_press = true
+action = "move_left"
+
+[node name="RightButton" type="TouchScreenButton" parent="DPadGroup" unique_id=1413414212]
+modulate = Color(1, 1, 1, 0.5019608)
+position = Vector2(44, 92)
+texture_normal = ExtResource("2_36e3b")
+texture_pressed = ExtResource("5_frcm8")
+passby_press = true
+action = "move_right"
+
+[node name="ActionGroup" type="Control" parent="." unique_id=789244084]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="JumpButton" type="TouchScreenButton" parent="ActionGroup" unique_id=1967832043]
+modulate = Color(1, 1, 1, 0.5019608)
+position = Vector2(224, 92)
+texture_normal = ExtResource("4_0yjk1")
+texture_pressed = ExtResource("9_db0do")
+action = "jump"
+
+[node name="AttackButton" type="TouchScreenButton" parent="ActionGroup" unique_id=1327745849]
+modulate = Color(1, 1, 1, 0.5019608)
+position = Vector2(192, 92)
+texture_normal = ExtResource("3_bw6v4")
+texture_pressed = ExtResource("5_bw6v4")
+action = "attack"
+
+[node name="ShootButton" type="TouchScreenButton" parent="ActionGroup" unique_id=2117206609]
+modulate = Color(1, 1, 1, 0.5019608)
+position = Vector2(224, 62)
+texture_normal = ExtResource("5_fsqso")
+texture_pressed = ExtResource("11_40kr5")
+action = "shoot"
+
+[node name="MenuGroup" type="Control" parent="." unique_id=507474968]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseButton" type="TouchScreenButton" parent="MenuGroup" unique_id=1108558003]
+modulate = Color(1, 1, 1, 0.5019608)
+position = Vector2(240, 4)
+texture_normal = ExtResource("6_hfat2")
+texture_pressed = ExtResource("13_yvgh5")
+action = "toggle_pause"

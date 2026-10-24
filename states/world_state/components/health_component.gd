@@ -1,0 +1,31 @@
+class_name HealthComponent
+extends Node
+
+signal health_changed
+signal max_health_changed
+signal died
+
+@export var max_health: int = 5:
+	set(value):
+		max_health = value
+		max_health_changed.emit(max_health)
+
+@onready var current_health: int = max_health
+
+func _ready() -> void:
+	pass
+
+
+func damage(amount:int) -> void:
+
+	current_health = clampi(current_health - amount, 0, max_health)
+	health_changed.emit(current_health)
+
+	if current_health <= 0:
+		died.emit()
+
+func heal(amount: int) -> void:
+	if current_health >= max_health: return
+	
+	current_health = clampi(current_health + amount, 0, max_health)
+	health_changed.emit(current_health)

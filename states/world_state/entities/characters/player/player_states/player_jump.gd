@@ -1,0 +1,50 @@
+extends State
+class_name PlayerJump
+
+var gravity: float
+
+func enter() -> void:
+	
+	owner.get_node("AnimatedSprite2D").play("jump")
+	
+	owner.jump_counter += 1
+	owner.velocity.y = owner.move_component.jump_velocity
+	
+	if not Input.is_action_pressed("jump"):
+		gravity = owner.move_component.gravity * 4
+	else:
+		gravity = owner.move_component.gravity
+
+func handle_input(event: InputEvent) -> void:
+	
+	if event.is_action_pressed("jump"):
+		if owner.check_ability("Star Jump") and owner.jump_counter == 1:
+			fsm.change_state("StarJump")
+		elif owner.check_ability("Glide"):
+			fsm.change_state("Glide")
+		
+	elif event.is_action_released("jump"):
+		gravity = owner.move_component.gravity * 4
+		
+	if event.is_action_pressed("attack"):
+		# Ground slam if holding down
+		if Input.is_action_pressed("down")\
+		and owner.check_ability("Ground Slam"):
+				fsm.change_state("Dive")
+			
+		elif owner.air_attack_count < 1:# and owner.get_node("AttackTimer").is_stopped():
+			fsm.change_state("AirAttack")
+	
+func physics_update(delta: float) -> void:
+
+	# Add gravity
+	owner.velocity.y = min(owner.velocity.y + gravity * delta,\
+	owner.move_component.max_fall_speed)
+	
+	# Handle horizontal movement
+	owner.x_input(delta)
+	owner.move_component.process_movement(delta)
+	owner.move_and_slide()
+	
+	if owner.velocity.y >= 0:
+		fsm.change_state("Fall")
