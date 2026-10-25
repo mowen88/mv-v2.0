@@ -6,6 +6,7 @@ extends Control
 
 @onready var main_menu: VBoxContainer = $MainMenu
 @onready var settings_menu: VBoxContainer = $SettingsMenu
+@onready var language_menu: VBoxContainer = $LanguageMenu
 @onready var audio_menu: VBoxContainer = $AudioMenu
 @onready var gameplay_menu: VBoxContainer = $GameplayMenu
 @onready var save_slot_menu: VBoxContainer = $SaveSlotMenu
@@ -28,6 +29,7 @@ func _ready() -> void:
 	main_menu.start_game_requested.connect(func(): show_panel(save_slot_menu))
 	main_menu.settings_requested.connect(func(): show_panel(settings_menu))
 	pause_menu.settings_requested.connect(func(): show_panel(settings_menu))
+	settings_menu.language_requested.connect(func(): show_panel(language_menu))
 	settings_menu.audio_requested.connect(func(): show_panel(audio_menu))
 	settings_menu.gameplay_requested.connect(func(): show_panel(gameplay_menu))
 	
@@ -38,6 +40,7 @@ func _ready() -> void:
 	pause_menu.quit_requested.connect(func(): show_panel(confirm_quit_menu))
 	settings_menu.back_requested.connect(_go_back)
 	audio_menu.back_requested.connect(_go_back)
+	language_menu.back_requested.connect(_go_back)
 	gameplay_menu.back_requested.connect(_go_back)
 	save_slot_menu.back_requested.connect(_go_back)
 	save_slot_menu.slot_requested.connect(_on_save_slot_selected)

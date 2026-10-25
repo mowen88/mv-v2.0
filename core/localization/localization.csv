@@ -1,0 +1,21 @@
+keys,en,pl,fr,es,de
+SPLASH_DEVELOPED_BY,Developed by,Stworzone przez,D�velopp� par,Desarrollado por,Entwickelt von
+MENU_START_GAME,Start Game,Rozpocznij gra?,Démarrer,Jugar,Spiel starten
+MENU_SETTINGS,Settings,Ustawienia,Paramètres,Opciones,Einstellungen
+MENU_CREDITS,Credits,Autorzy,Crédits,Créditos,Mitwirkende
+MENU_BACK,Back,Powrót,Retour,Atrás,Zurück
+MENU_AUDIO,Audio,Dłwiłk,Audio,Audio,Audio
+MENU_LANGUAGE,Language,Jłzyk,Langue,Idioma,Sprache
+MENU_GAMEPLAY,Gameplay,Rozgrywka,Jeu,Jugabilidad,Gameplay
+MENU_MASTER_VOL,Master Volume,G?o główna,Volume principal,Volumen principal,Gesamtlautstärke
+MENU_MUSIC_VOL,Music Volume,Gło?no? muzyki,Volume de la musique,Volumen de música,Musiklautstärke
+MENU_SFX_VOL,SFX volume,G?o?no?  efektów,Volume des effets,Efectos de sonido,SFX-Lautstärke
+MENU_BATTERY_SAVER,Battery Saver,Oszcz?dzanie baterii,Économie d'énergie,Ahorro de batería,Akkusparmodus
+MENU_SCREENSHAKE,Screenshake,Wstrz?sy ekranu,Secousse d'écran,Temblor de pantalla,Bildschirmwackeln
+MENU_VIBRATION,Vibration,Wibracje,Vibration,Vibración,Vibration
+MENU_RETURN_TO_MAIN,Return to main menu?,Powróci? do menu g?ównego?,Retourner au menu principal?,¿Volver al menú principal?,Zum Hauptmenü zurückkehren?
+MENU_DELETE_SAVE,Delete save file?,Usu? plik zapisu?,Supprimer le fichier de sauvegarde ?,¿Borrar archivo de guardado?,Speicherstand löschen?
+MENU_QUIT_TO_TITLE,Quit to Title,Wyjd? do menu,Quitter vers le titre,Salir al título,Beenden zum Titel
+MENU_CONFIRM,Confirm,Potwierd?,Confirmer,Confirmar,Bestätigen
+MENU_CANCEL,Cancel,Anuluj,Annuler,Cancelar,Abbrechen
+MENU_EMPTY_SLOT,Empty Slot,Pusty slot,Emplacement vide,Ranura vacía,Leerer Slot

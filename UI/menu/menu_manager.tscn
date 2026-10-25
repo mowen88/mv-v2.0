@@ -16,8 +16,13 @@
 [ext_resource type="Texture2D" uid="uid://8pexywng1rk8" path="res://UI/menu/elements/clear_slot.png" id="8_c7ge0"]
 [ext_resource type="Script" uid="uid://b2h3fp6fcnfm4" path="res://UI/menu/confirm_delete_menu.gd" id="9_1r30s"]
 [ext_resource type="Texture2D" uid="uid://b7qjhyjiwb5ep" path="res://UI/menu/elements/checkbox_on.png" id="9_i4w7f"]
+[ext_resource type="Script" uid="uid://c02onk25ixyal" path="res://UI/menu/language_menu.gd" id="10_665ki"]
 [ext_resource type="Texture2D" uid="uid://c7ira7w4d5i1x" path="res://UI/menu/elements/checkbox_off.png" id="10_p5jt0"]
+[ext_resource type="Texture2D" uid="uid://bvscnqptjwx23" path="res://UI/menu/elements/left_button.png" id="11_svwst"]
+[ext_resource type="Texture2D" uid="uid://dvccfw28axhfx" path="res://UI/menu/elements/left_button_pressed.png" id="12_qkdny"]
+[ext_resource type="Texture2D" uid="uid://cro0vswc6lfda" path="res://UI/menu/elements/right_button.png" id="13_6yjuc"]
 [ext_resource type="Script" uid="uid://btuk00pgtok8l" path="res://UI/menu/confirm_quit_menu.gd" id="13_p5jt0"]
+[ext_resource type="Texture2D" uid="uid://ea4lteriu2vh" path="res://UI/menu/elements/right_button_pressed.png" id="14_k4v6g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dw6nm"]
 
@@ -149,12 +154,6 @@ content_margin_top = 2.0
 content_margin_right = 0.0
 content_margin_bottom = 0.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmvpi"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dnqjm"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tcf2h"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n0q8y"]
 content_margin_left = 0.0
 content_margin_top = 0.0
@@ -172,6 +171,12 @@ content_margin_left = 0.0
 content_margin_top = 0.0
 content_margin_right = 0.0
 content_margin_bottom = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmvpi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dnqjm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tcf2h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_78rhs"]
 
@@ -201,25 +206,65 @@ content_margin_top = 2.0
 content_margin_right = 0.0
 content_margin_bottom = 0.0
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n0q8y"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l11cl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o2qsq"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w834n"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0b66e"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_78rhs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7ifo3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1wlqe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jl6jv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rmjul"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y6t68"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gcn8u"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n0q8y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uu445"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_34xy7"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eqe44"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sxu47"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7bnjh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gaesa"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_glvmx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_85wlo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o60jl"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jobv5"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7k52u"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0magg"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lcngk"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ssp2w"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2cw1d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qxvva"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x5faw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lryo4"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bkfsg"]
 
@@ -287,7 +332,7 @@ theme_override_constants/h_separation = 4
 theme_override_styles/normal = SubResource("StyleBoxFlat_dw6nm")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_qkdny")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6yjuc")
-text = "Start"
+text = "MENU_START_GAME"
 flat = true
 
 [node name="SettingsButton" type="Button" parent="MainMenu" unique_id=1601263368]
@@ -296,7 +341,7 @@ theme = ExtResource("3_b8rgm")
 theme_override_styles/normal = SubResource("StyleBoxFlat_665ki")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_k4v6g")
 theme_override_styles/hover = SubResource("StyleBoxFlat_gfgov")
-text = "Settings"
+text = "MENU_SETTINGS"
 flat = true
 
 [node name="CreditsButton" type="Button" parent="MainMenu" unique_id=1747266106]
@@ -305,7 +350,7 @@ theme = ExtResource("3_b8rgm")
 theme_override_styles/normal = SubResource("StyleBoxFlat_2gngb")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_11jsw")
 theme_override_styles/hover = SubResource("StyleBoxFlat_gu7fk")
-text = "Credits"
+text = "MENU_CREDITS"
 flat = true
 
 [node name="SaveSlotMenu" type="VBoxContainer" parent="." unique_id=113040842]
@@ -400,7 +445,7 @@ theme = ExtResource("3_b8rgm")
 theme_override_styles/normal = SubResource("StyleBoxFlat_o2qsq")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_0b66e")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7ifo3")
-text = "Back"
+text = "MENU_BACK"
 flat = true
 
 [node name="SettingsMenu" type="VBoxContainer" parent="." unique_id=1164309718]
@@ -414,22 +459,31 @@ grow_vertical = 2
 theme_override_constants/separation = 4
 script = ExtResource("3_jgxlf")
 
-[node name="AudioButton" type="Button" parent="SettingsMenu" unique_id=736624400]
-layout_mode = 2
-theme = ExtResource("3_b8rgm")
-theme_override_styles/normal = SubResource("StyleBoxFlat_gmvpi")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_dnqjm")
-theme_override_styles/hover = SubResource("StyleBoxFlat_tcf2h")
-text = "Audio"
-flat = true
-
 [node name="GameplayButton" type="Button" parent="SettingsMenu" unique_id=1872917823]
 layout_mode = 2
 theme = ExtResource("3_b8rgm")
 theme_override_styles/normal = SubResource("StyleBoxFlat_n0q8y")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_w834n")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7k52u")
-text = "Gameplay"
+text = "MENU_GAMEPLAY"
+flat = true
+
+[node name="LanguageButton" type="Button" parent="SettingsMenu" unique_id=1998822777]
+layout_mode = 2
+theme = ExtResource("3_b8rgm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gmvpi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dnqjm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tcf2h")
+text = "MENU_LANGUAGE"
+flat = true
+
+[node name="AudioButton" type="Button" parent="SettingsMenu" unique_id=736624400]
+layout_mode = 2
+theme = ExtResource("3_b8rgm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gmvpi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dnqjm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tcf2h")
+text = "MENU_AUDIO"
 flat = true
 
 [node name="BackButton" type="Button" parent="SettingsMenu" unique_id=1180813145]
@@ -437,7 +491,53 @@ layout_mode = 2
 theme = ExtResource("3_b8rgm")
 theme_override_styles/normal = SubResource("StyleBoxFlat_78rhs")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_gcn8u")
-text = "Back"
+text = "MENU_BACK"
+flat = true
+
+[node name="LanguageMenu" type="VBoxContainer" parent="." unique_id=374792560]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -41.5
+offset_right = 41.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+script = ExtResource("10_665ki")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LanguageMenu" unique_id=1960273318]
+layout_mode = 2
+alignment = 1
+
+[node name="LeftButton" type="TextureButton" parent="LanguageMenu/HBoxContainer" unique_id=145930484]
+layout_mode = 2
+theme = ExtResource("3_b8rgm")
+texture_normal = ExtResource("11_svwst")
+texture_pressed = ExtResource("12_qkdny")
+texture_focused = ExtResource("12_qkdny")
+
+[node name="LanguageLabel" type="Label" parent="LanguageMenu/HBoxContainer" unique_id=902715544]
+layout_mode = 2
+theme = ExtResource("3_b8rgm")
+theme_override_fonts/font = ExtResource("5_w6o3i")
+theme_override_font_sizes/font_size = 10
+
+[node name="RightButton" type="TextureButton" parent="LanguageMenu/HBoxContainer" unique_id=1589157322]
+layout_mode = 2
+theme = ExtResource("3_b8rgm")
+texture_normal = ExtResource("13_6yjuc")
+texture_pressed = ExtResource("14_k4v6g")
+texture_focused = ExtResource("14_k4v6g")
+
+[node name="BackButton" type="Button" parent="LanguageMenu" unique_id=99627750]
+layout_mode = 2
+theme = ExtResource("3_b8rgm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_665ki")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_k4v6g")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gfgov")
+text = "MENU_CONFIRM"
 flat = true
 
 [node name="AudioMenu" type="VBoxContainer" parent="." unique_id=740390464]
@@ -460,7 +560,7 @@ alignment = 1
 layout_mode = 2
 theme = ExtResource("3_b8rgm")
 theme_override_fonts/font = ExtResource("5_w6o3i")
-text = "Master Volume"
+text = "MENU_MASTER_VOL"
 
 [node name="MasterSlider" type="HSlider" parent="AudioMenu/MasterRow" unique_id=914701229]
 custom_minimum_size = Vector2(50, 0)
@@ -482,7 +582,7 @@ alignment = 1
 layout_mode = 2
 theme = ExtResource("3_b8rgm")
 theme_override_fonts/font = ExtResource("5_w6o3i")
-text = "Music Volume"
+text = "MENU_MUSIC_VOL"
 
 [node name="MusicSlider" type="HSlider" parent="AudioMenu/MusicRow" unique_id=2026838695]
 custom_minimum_size = Vector2(50, 0)
@@ -504,7 +604,7 @@ alignment = 1
 layout_mode = 2
 theme = ExtResource("3_b8rgm")
 theme_override_fonts/font = ExtResource("5_w6o3i")
-text = "SFX Volume"
+text = "MENU_SFX_VOL"
 
 [node name="SFXSlider" type="HSlider" parent="AudioMenu/SFXRow" unique_id=1592161457]
 custom_minimum_size = Vector2(50, 0)
@@ -523,7 +623,7 @@ theme = ExtResource("3_b8rgm")
 theme_override_styles/normal = SubResource("StyleBoxFlat_1wlqe")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_jl6jv")
 theme_override_styles/hover = SubResource("StyleBoxFlat_rmjul")
-text = "Back"
+text = "MENU_BACK"
 flat = true
 
 [node name="GameplayMenu" type="VBoxContainer" parent="." unique_id=1163370360]
@@ -540,7 +640,7 @@ script = ExtResource("8_8rfxe")
 [node name="BatterySaverRow" type="HBoxContainer" parent="GameplayMenu" unique_id=1089732547]
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_constants/separation = 0
+theme_override_constants/separation = 6
 alignment = 1
 
 [node name="BatterySaverLabel" type="Label" parent="GameplayMenu/BatterySaverRow" unique_id=554833247]
@@ -548,17 +648,21 @@ layout_mode = 2
 theme = ExtResource("3_b8rgm")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("5_w6o3i")
-text = "Battery Saver"
+text = "MENU_BATTERY_SAVER"
 
-[node name="BatterySaverCheckButton" type="CheckButton" parent="GameplayMenu/BatterySaverRow/BatterySaverLabel" unique_id=346864953]
-layout_mode = 0
-offset_left = 73.0
-offset_top = -2.0
-offset_right = 80.0
-offset_bottom = 13.0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_n0q8y")
+[node name="BatterySaverCheckButton" type="CheckButton" parent="GameplayMenu/BatterySaverRow" unique_id=346864953]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxEmpty_l11cl")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_o2qsq")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_w834n")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_0b66e")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_78rhs")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_7ifo3")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_1wlqe")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_jl6jv")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_rmjul")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_y6t68")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_gcn8u")
 theme_override_icons/checked = ExtResource("9_i4w7f")
 theme_override_icons/unchecked = ExtResource("10_p5jt0")
@@ -566,7 +670,7 @@ theme_override_icons/unchecked = ExtResource("10_p5jt0")
 [node name="ScreenshakeRow" type="HBoxContainer" parent="GameplayMenu" unique_id=1885714178]
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_constants/separation = 0
+theme_override_constants/separation = 6
 alignment = 1
 
 [node name="ScreenshakeLabel" type="Label" parent="GameplayMenu/ScreenshakeRow" unique_id=1031893029]
@@ -574,17 +678,21 @@ layout_mode = 2
 theme = ExtResource("3_b8rgm")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("5_w6o3i")
-text = "Screenshake"
+text = "MENU_SCREENSHAKE"
 
-[node name="ScreenshakeCheckButton" type="CheckButton" parent="GameplayMenu/ScreenshakeRow/ScreenshakeLabel" unique_id=310598028]
-layout_mode = 0
-offset_left = 63.0
-offset_top = -2.0
-offset_right = 70.0
-offset_bottom = 13.0
+[node name="ScreenshakeCheckButton" type="CheckButton" parent="GameplayMenu/ScreenshakeRow" unique_id=310598028]
+layout_mode = 2
+size_flags_vertical = 4
 theme_override_styles/normal = SubResource("StyleBoxEmpty_n0q8y")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_uu445")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_34xy7")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_eqe44")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_sxu47")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_7bnjh")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_gaesa")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_glvmx")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_85wlo")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_o60jl")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_jobv5")
 theme_override_icons/checked = ExtResource("9_i4w7f")
 theme_override_icons/unchecked = ExtResource("10_p5jt0")
@@ -592,7 +700,7 @@ theme_override_icons/unchecked = ExtResource("10_p5jt0")
 [node name="VibrateRow" type="HBoxContainer" parent="GameplayMenu" unique_id=1205810750]
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_constants/separation = 0
+theme_override_constants/separation = 6
 alignment = 1
 
 [node name="VibrateLabel" type="Label" parent="GameplayMenu/VibrateRow" unique_id=1611169982]
@@ -600,17 +708,19 @@ layout_mode = 2
 theme = ExtResource("3_b8rgm")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("5_w6o3i")
-text = "Vibration"
+text = "MENU_VIBRATION"
 
-[node name="VibrateCheckButton" type="CheckButton" parent="GameplayMenu/VibrateRow/VibrateLabel" unique_id=1116473619]
-layout_mode = 0
-offset_left = 47.0
-offset_top = -2.0
-offset_right = 54.0
-offset_bottom = 13.0
+[node name="VibrateCheckButton" type="CheckButton" parent="GameplayMenu/VibrateRow" unique_id=1116473619]
+layout_mode = 2
+size_flags_vertical = 4
 theme_override_styles/normal = SubResource("StyleBoxEmpty_7k52u")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_0magg")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_lcngk")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_ssp2w")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_2cw1d")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_qxvva")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_x5faw")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_lryo4")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_bkfsg")
 theme_override_icons/checked = ExtResource("9_i4w7f")
 theme_override_icons/unchecked = ExtResource("10_p5jt0")
@@ -639,7 +749,8 @@ layout_mode = 2
 theme = ExtResource("3_b8rgm")
 theme_override_colors/font_color = Color(0.8980392, 0.34509805, 0.34509805, 1)
 theme_override_fonts/font = ExtResource("5_w6o3i")
-text = "Return to main menu?"
+text = "MENU_RETURN_TO_MAIN
+"
 horizontal_alignment = 1
 
 [node name="ConfirmButton" type="Button" parent="ConfirmQuitMenu" unique_id=1714836274]
@@ -648,7 +759,7 @@ theme = ExtResource("3_b8rgm")
 theme_override_styles/normal = SubResource("StyleBoxFlat_jobv5")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_y6t68")
 theme_override_styles/hover = SubResource("StyleBoxFlat_uu445")
-text = "Confirm"
+text = "MENU_CONFIRM"
 flat = true
 
 [node name="CancelButton" type="Button" parent="ConfirmQuitMenu" unique_id=2091697113]
@@ -657,7 +768,7 @@ theme = ExtResource("3_b8rgm")
 theme_override_styles/normal = SubResource("StyleBoxFlat_eqe44")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_7bnjh")
 theme_override_styles/hover = SubResource("StyleBoxFlat_gaesa")
-text = "Cancel"
+text = "MENU_CANCEL"
 flat = true
 
 [node name="ConfirmDeleteMenu" type="VBoxContainer" parent="." unique_id=2124360719]
@@ -676,7 +787,7 @@ layout_mode = 2
 theme = ExtResource("3_b8rgm")
 theme_override_colors/font_color = Color(0.8980392, 0.34509805, 0.34509805, 1)
 theme_override_fonts/font = ExtResource("5_w6o3i")
-text = "Delete this save file?"
+text = "MENU_DELETE_SAVE"
 horizontal_alignment = 1
 
 [node name="ConfirmButton" type="Button" parent="ConfirmDeleteMenu" unique_id=279596338]
@@ -685,7 +796,7 @@ theme = ExtResource("3_b8rgm")
 theme_override_styles/normal = SubResource("StyleBoxFlat_glvmx")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_85wlo")
 theme_override_styles/hover = SubResource("StyleBoxFlat_o60jl")
-text = "Confirm"
+text = "MENU_CONFIRM"
 flat = true
 
 [node name="CancelButton" type="Button" parent="ConfirmDeleteMenu" unique_id=746728753]
@@ -694,7 +805,7 @@ theme = ExtResource("3_b8rgm")
 theme_override_styles/normal = SubResource("StyleBoxFlat_0magg")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ssp2w")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qxvva")
-text = "Cancel"
+text = "MENU_CANCEL"
 flat = true
 
 [node name="PauseMenu" type="VBoxContainer" parent="." unique_id=73428740]
@@ -710,11 +821,11 @@ script = ExtResource("6_8ucft")
 [node name="SettingsButton" type="Button" parent="PauseMenu" unique_id=1874357193]
 layout_mode = 2
 theme = ExtResource("3_b8rgm")
-text = "Settings"
+text = "MENU_SETTINGS"
 flat = true
 
 [node name="QuitToTitleButton" type="Button" parent="PauseMenu" unique_id=1740169808]
 layout_mode = 2
 theme = ExtResource("3_b8rgm")
-text = "Quit to Title"
+text = "MENU_QUIT_TO_TITLE"
 flat = true

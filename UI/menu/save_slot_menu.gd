@@ -45,6 +45,6 @@ func update_slot_labels() -> void:
 			# Show delete only if data exists
 			delete_button.visible = true
 		else:
-			slot_button.text = "%s: Empty Slot" % slot_id
+			slot_button.text = "%s: %s" % [slot_id, tr("MENU_EMPTY_SLOT")]
 			# Hide delete button if slot is empty
 			delete_button.visible = false

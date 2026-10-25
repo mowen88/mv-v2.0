@@ -9,14 +9,14 @@ signal back_requested
 func _ready() -> void:
 	
 	# 1. Update settings on disk
-	$BatterySaverRow/BatterySaverLabel/BatterySaverCheckButton.button_pressed = SaveManager.SETTINGS_DATA["Battery Saver"]
-	$ScreenshakeRow/ScreenshakeLabel/ScreenshakeCheckButton.button_pressed = SaveManager.SETTINGS_DATA["Screenshake"]
-	$VibrateRow/VibrateLabel/VibrateCheckButton.button_pressed = SaveManager.SETTINGS_DATA["Vibration"]
+	$BatterySaverRow/BatterySaverCheckButton.button_pressed = SaveManager.SETTINGS_DATA["Battery Saver"]
+	$ScreenshakeRow/ScreenshakeCheckButton.button_pressed = SaveManager.SETTINGS_DATA["Screenshake"]
+	$VibrateRow/VibrateCheckButton.button_pressed = SaveManager.SETTINGS_DATA["Vibration"]
 	
 	# 2. Wire up the CheckBox
-	$ScreenshakeRow/ScreenshakeLabel/ScreenshakeCheckButton.toggled.connect(func(is_on): screenshake_toggle_requested.emit(is_on))
-	$VibrateRow/VibrateLabel/VibrateCheckButton.toggled.connect(func(is_on): vibrate_toggle_requested.emit(is_on))
-	$BatterySaverRow/BatterySaverLabel/BatterySaverCheckButton.toggled.connect(func(is_on): battery_saver_toggle_requested.emit(is_on))
+	$ScreenshakeRow/ScreenshakeCheckButton.toggled.connect(func(is_on): screenshake_toggle_requested.emit(is_on))
+	$VibrateRow/VibrateCheckButton.toggled.connect(func(is_on): vibrate_toggle_requested.emit(is_on))
+	$BatterySaverRow/BatterySaverCheckButton.toggled.connect(func(is_on): battery_saver_toggle_requested.emit(is_on))
 	
 	# 3. Wire up back navigation
 	$BackButton.pressed.connect(func(): back_requested.emit())

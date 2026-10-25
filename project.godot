@@ -101,6 +101,11 @@ up={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://core/localization/localization.en.translation", "res://core/localization/localization.de.translation", "res://core/localization/localization.pl.translation", "res://core/localization/localization.fr.translation", "res://core/localization/localization.es.translation")
+locale/locale_filter_mode=0
+
 [layer_names]
 
 2d_render/layer_1="World"
