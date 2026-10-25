@@ -13,9 +13,9 @@ MENU_SFX_VOL,SFX volume,G?o?no?  efektów,Volume des effets,Efectos de sonido,SF
 MENU_BATTERY_SAVER,Battery Saver,Oszcz?dzanie baterii,Économie d'énergie,Ahorro de batería,Akkusparmodus
 MENU_SCREENSHAKE,Screenshake,Wstrz?sy ekranu,Secousse d'écran,Temblor de pantalla,Bildschirmwackeln
 MENU_VIBRATION,Vibration,Wibracje,Vibration,Vibración,Vibration
+MENU_QUIT_TO_TITLE,Quit to Title,Powróci? do menu g?ównego?,Retourner au menu principal?,¿Volver al menú principal?,Zum Hauptmenü zurückkehren?
 MENU_RETURN_TO_MAIN,Return to main menu?,Powróci? do menu g?ównego?,Retourner au menu principal?,¿Volver al menú principal?,Zum Hauptmenü zurückkehren?
 MENU_DELETE_SAVE,Delete save file?,Usu? plik zapisu?,Supprimer le fichier de sauvegarde ?,¿Borrar archivo de guardado?,Speicherstand löschen?
-MENU_QUIT_TO_TITLE,Quit to Title,Wyjd? do menu,Quitter vers le titre,Salir al título,Beenden zum Titel
 MENU_CONFIRM,Confirm,Potwierd?,Confirmer,Confirmar,Bestätigen
 MENU_CANCEL,Cancel,Anuluj,Annuler,Cancelar,Abbrechen
 MENU_EMPTY_SLOT,Empty Slot,Pusty slot,Emplacement vide,Ranura vacía,Leerer Slot

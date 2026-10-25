@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://dur75euh1g2xp"]
+
+[ext_resource type="Script" uid="uid://b886023lhill2" path="res://states/world_state/environment/boss_lock_wall/boss_lock_wall.gd" id="1_crqna"]
+[ext_resource type="Texture2D" uid="uid://dl0xrga4yq66p" path="res://states/world_state/environment/boss_lock_wall/boss_lock_wall.png" id="1_gl6gm"]
+[ext_resource type="AudioStream" uid="uid://cm2bepgft1jn7" path="res://states/world_state/environment/boss_lock_wall/open_sound.wav" id="2_rnxxk"]
+[ext_resource type="PackedScene" uid="uid://den6c3m1ewre8" path="res://states/world_state/components/persistence_component.tscn" id="3_nq7cg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nq7cg"]
+size = Vector2(48, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uh26j"]
+size = Vector2(12, 48)
+
+[sub_resource type="Gradient" id="Gradient_crqna"]
+offsets = PackedFloat32Array(0.048387095, 0.5241935, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nq7cg"]
+gradient = SubResource("Gradient_crqna")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rnxxk"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(1, 16, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, 0, 0)
+angular_velocity_min = -1.6093254e-05
+angular_velocity_max = 82.289986
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_nq7cg")
+turbulence_enabled = true
+
+[node name="BossLockWall" type="Node2D" unique_id=1342177386]
+script = ExtResource("1_crqna")
+open_sound = ExtResource("2_rnxxk")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1413866648]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2118810869]
+shape = SubResource("RectangleShape2D_nq7cg")
+
+[node name="walls" type="Node2D" parent="." unique_id=28508374]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="walls" unique_id=1542202784]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls/StaticBody2D" unique_id=1524318647]
+shape = SubResource("RectangleShape2D_uh26j")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="walls/StaticBody2D" unique_id=1763913740]
+amount = 24
+texture = ExtResource("1_gl6gm")
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_rnxxk")
+
+[node name="PersistenceComponent" parent="." unique_id=907069416 instance=ExtResource("3_nq7cg")]

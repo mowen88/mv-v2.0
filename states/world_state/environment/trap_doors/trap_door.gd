@@ -21,6 +21,16 @@ func _on_trap_doors_unlocked(encounter_id:String) -> void:
 	#open_doors.emit()
 	# Add encounter to persistent states
 
+func _is_active(state: bool) -> void:
+	for child in walls.get_children():
+		if child is StaticBody2D:
+			for subchild in child.get_children():
+				if subchild is CollisionShape2D:
+					subchild.disabled = state
+		if child is GPUParticles2D:
+			child.emitting = state
+			child.visible = state
+
 func activate() -> void:
 	if state == "close":
 		return
@@ -30,5 +40,4 @@ func activate() -> void:
 	animated_sprite.visible = true
 	# Enable collision
 	collision_shape.set_deferred("disabled", false)
-	# Change music?
 	

@@ -188,23 +188,14 @@ grow_begin = 0.0
 grow_end = 0.0
 thickness = 2
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1wlqe"]
-content_margin_left = 0.0
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gmvpi"]
 content_margin_top = 2.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jl6jv"]
-content_margin_left = 0.0
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dnqjm"]
 content_margin_top = 2.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rmjul"]
-content_margin_left = 0.0
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tcf2h"]
 content_margin_top = 2.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l11cl"]
 
@@ -268,15 +259,6 @@ content_margin_bottom = 0.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bkfsg"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gmvpi"]
-content_margin_top = 2.0
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dnqjm"]
-content_margin_top = 2.0
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tcf2h"]
-content_margin_top = 2.0
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jobv5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y6t68"]
@@ -300,6 +282,12 @@ content_margin_top = 2.0
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ssp2w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qxvva"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1wlqe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jl6jv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rmjul"]
 
 [node name="MenuManager" type="Control" unique_id=1846845566]
 layout_mode = 3
@@ -532,6 +520,7 @@ texture_pressed = ExtResource("14_k4v6g")
 texture_focused = ExtResource("14_k4v6g")
 
 [node name="BackButton" type="Button" parent="LanguageMenu" unique_id=99627750]
+custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
 theme = ExtResource("3_b8rgm")
 theme_override_styles/normal = SubResource("StyleBoxFlat_665ki")
@@ -617,14 +606,13 @@ max_value = 1.0
 step = 0.1
 value = 1.0
 
-[node name="BackButton" type="Button" parent="AudioMenu" unique_id=1128385258]
+[node name="BackButton" type="Button" parent="AudioMenu" unique_id=355880598]
 layout_mode = 2
 theme = ExtResource("3_b8rgm")
-theme_override_styles/normal = SubResource("StyleBoxFlat_1wlqe")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jl6jv")
-theme_override_styles/hover = SubResource("StyleBoxFlat_rmjul")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gmvpi")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_dnqjm")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_tcf2h")
 text = "MENU_BACK"
-flat = true
 
 [node name="GameplayMenu" type="VBoxContainer" parent="." unique_id=1163370360]
 visible = false
@@ -731,7 +719,7 @@ theme = ExtResource("3_b8rgm")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_gmvpi")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_dnqjm")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_tcf2h")
-text = "Back"
+text = "MENU_BACK"
 
 [node name="ConfirmQuitMenu" type="VBoxContainer" parent="." unique_id=1822483406]
 visible = false
@@ -744,13 +732,12 @@ grow_vertical = 2
 theme_override_constants/separation = 4
 script = ExtResource("13_p5jt0")
 
-[node name="Label" type="Label" parent="ConfirmQuitMenu" unique_id=2090592960]
+[node name="Label" type="Label" parent="ConfirmQuitMenu" unique_id=2051282485]
 layout_mode = 2
 theme = ExtResource("3_b8rgm")
 theme_override_colors/font_color = Color(0.8980392, 0.34509805, 0.34509805, 1)
 theme_override_fonts/font = ExtResource("5_w6o3i")
-text = "MENU_RETURN_TO_MAIN
-"
+text = "MENU_RETURN_TO_MAIN"
 horizontal_alignment = 1
 
 [node name="ConfirmButton" type="Button" parent="ConfirmQuitMenu" unique_id=1714836274]
@@ -815,17 +802,22 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 0
+theme_override_constants/separation = 4
 script = ExtResource("6_8ucft")
 
 [node name="SettingsButton" type="Button" parent="PauseMenu" unique_id=1874357193]
 layout_mode = 2
 theme = ExtResource("3_b8rgm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1wlqe")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jl6jv")
 text = "MENU_SETTINGS"
 flat = true
 
-[node name="QuitToTitleButton" type="Button" parent="PauseMenu" unique_id=1740169808]
+[node name="QuitToTitleButton" type="Button" parent="PauseMenu" unique_id=2043328676]
 layout_mode = 2
 theme = ExtResource("3_b8rgm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1wlqe")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rmjul")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jl6jv")
 text = "MENU_QUIT_TO_TITLE"
 flat = true

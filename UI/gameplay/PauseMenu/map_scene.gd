@@ -71,7 +71,6 @@ func update_map_display(current_room: Node2D = null, player_node: Node2D = null)
 func _center_on_room_and_player(map_sprite: Sprite2D, player_node: Node2D, room_node: Node2D) -> void:
 	# 1. Player's local position from the center of the room
 	var player_local = player_node.global_position - room_node.global_position
-	
 	# 2. Your standard single-room world dimensions
 	var standard_room_world_size = Vector2(260.0, 120.0)
 	

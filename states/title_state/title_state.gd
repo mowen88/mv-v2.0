@@ -15,7 +15,7 @@ func _ready() -> void:
 	_tween_in_character()
 	
 	# Wait for the character art animation to finish before waking up the menu system
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(1.0).timeout
 	# Open the menu manager
 	menu_manager._initialize_menu("MainMenu")
 	

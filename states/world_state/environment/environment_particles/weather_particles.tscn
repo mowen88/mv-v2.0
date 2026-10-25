@@ -15,7 +15,6 @@ turbulence_initial_displacement_min = 0.5000015
 turbulence_initial_displacement_max = 0.5000015
 
 [node name="WeatherParticles" type="GPUParticles2D" unique_id=1842684134]
-z_index = 1
 amount = 150
 lifetime = 12.0
 preprocess = 12.0

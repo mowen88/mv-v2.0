@@ -12,7 +12,6 @@ func _ready() -> void:
 	reference_camera_position = camera.get_screen_center_position()
 	reference_position = global_position
 
-
 func _process(_delta: float) -> void:
 	if not is_instance_valid(camera):
 		return

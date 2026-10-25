@@ -1388,6 +1388,7 @@ z_index = -1
 z_index = 5
 
 [node name="SlopeTileMap" type="TileMapLayer" parent="." unique_id=1149728441 groups=["slopes"]]
+z_index = 5
 tile_set = SubResource("TileSet_83wd4")
 
 [node name="Decoration" type="Node2D" parent="." unique_id=1978398061]
@@ -1419,3 +1420,5 @@ tile_set = SubResource("TileSet_83wd4")
 [node name="Doors" type="Node2D" parent="." unique_id=1649377259]
 
 [node name="Enemies" type="Node2D" parent="." unique_id=978055959]
+
+[node name="Gauntlet" type="Node2D" parent="." unique_id=1813862647]

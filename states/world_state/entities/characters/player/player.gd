@@ -205,6 +205,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 		
 	fsm.handle_input(event)
+	
+	if Input.is_key_pressed(KEY_D):
+		SignalBus.open_boss_locks.emit()
 
 	if event.is_action_pressed("shoot"):
 		#health_component.damage(1)
