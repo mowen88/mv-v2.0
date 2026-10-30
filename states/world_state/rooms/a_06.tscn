@@ -6,6 +6,7 @@
 [ext_resource type="TileSet" uid="uid://8nv7ijoxyd2p" path="res://states/world_state/tilesets/tileset_01.tres" id="3_ab8ed"]
 [ext_resource type="PackedScene" uid="uid://7f20y3au607o" path="res://states/world_state/exits/room_exit.tscn" id="5_tlm73"]
 [ext_resource type="PackedScene" uid="uid://dur75euh1g2xp" path="res://states/world_state/environment/boss_lock_wall/boss_lock_wall.tscn" id="6_ab8ed"]
+[ext_resource type="PackedScene" uid="uid://bksau07opdi8h" path="res://states/world_state/entities/characters/enemies/flyer/flyer.tscn" id="6_i06y0"]
 [ext_resource type="Texture2D" uid="uid://dl0xrga4yq66p" path="res://states/world_state/environment/boss_lock_wall/boss_lock_wall.png" id="7_oxihv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uh26j"]
@@ -60,6 +61,9 @@ position = Vector2(248, 88)
 position = Vector2(272, 80)
 exit_id = 2
 target_room_path = "uid://4gak0b4ohega"
+
+[node name="Flyer" parent="Enemies" parent_id_path=PackedInt32Array(978055959) index="0" unique_id=1164829458 instance=ExtResource("6_i06y0")]
+position = Vector2(72, 32)
 
 [node name="BossLockWall" parent="Gauntlet" parent_id_path=PackedInt32Array(1813862647) index="0" unique_id=1342177386 instance=ExtResource("6_ab8ed")]
 position = Vector2(128, 72)

@@ -10,7 +10,6 @@ extends Node
 @export var max_fall_speed: float = 800.0
 @export var slide_speed: float = 100.00
 
-# Add parent reference
 var actor: CharacterBody2D
 
 # Assign variables

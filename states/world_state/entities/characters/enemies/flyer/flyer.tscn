@@ -1,0 +1,147 @@
+[gd_scene format=3 uid="uid://bksau07opdi8h"]
+
+[ext_resource type="Script" uid="uid://qfvpjndnus0m" path="res://states/world_state/entities/characters/enemies/flyer/flyer.gd" id="1_72bxv"]
+[ext_resource type="Material" uid="uid://bu4tbilew6k7v" path="res://core/shaders/sprite_flash_shader.tres" id="2_jscao"]
+[ext_resource type="Texture2D" uid="uid://dxau4rc26it6f" path="res://states/world_state/entities/characters/enemies/flyer/flyer_spritesheet.png" id="3_6kvs6"]
+[ext_resource type="Script" uid="uid://diq7imuclpv4v" path="res://states/world_state/entities/characters/finite_state_machine/finite_state_machine.gd" id="4_kefto"]
+[ext_resource type="Script" uid="uid://cls8wcywbci0r" path="res://states/world_state/entities/characters/enemies/flyer/idle.gd" id="5_6kvs6"]
+[ext_resource type="Script" uid="uid://b4c2gq7m51nsg" path="res://states/world_state/entities/characters/enemies/flyer/death.gd" id="5_72bxv"]
+[ext_resource type="Script" uid="uid://cc87wc3e1urtq" path="res://states/world_state/entities/characters/enemies/flyer/hit.gd" id="6_72bxv"]
+[ext_resource type="Script" uid="uid://bbyn0coqhgxsk" path="res://states/world_state/entities/characters/enemies/flyer/chase.gd" id="8_66snt"]
+[ext_resource type="PackedScene" uid="uid://c6sj10estib1c" path="res://states/world_state/components/health_component.tscn" id="9_5mngh"]
+[ext_resource type="PackedScene" uid="uid://c12tbs10lxuco" path="res://states/world_state/components/move_component.tscn" id="10_ltday"]
+[ext_resource type="PackedScene" uid="uid://bq2r808rtkdp" path="res://states/world_state/components/knockback_component.tscn" id="11_tp1or"]
+[ext_resource type="AudioStream" uid="uid://bhraaqi12g8b" path="res://states/world_state/entities/characters/player/player_audio/beam_cancel_sound.wav" id="13_lrmfs"]
+[ext_resource type="PackedScene" uid="uid://dduhheq66d0n2" path="res://states/world_state/components/squash_stretch_component.tscn" id="13_y4ndw"]
+[ext_resource type="PackedScene" uid="uid://d2h0ih21x6bqb" path="res://states/world_state/components/hurtbox_component.tscn" id="14_wcsl3"]
+[ext_resource type="PackedScene" uid="uid://crwqhwfreohvo" path="res://states/world_state/components/hitbox_component.tscn" id="16_eri07"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lrmfs"]
+radius = 40.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_66snt"]
+radius = 70.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrmfs"]
+atlas = ExtResource("3_6kvs6")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66snt"]
+atlas = ExtResource("3_6kvs6")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0yg7"]
+atlas = ExtResource("3_6kvs6")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sw2op"]
+atlas = ExtResource("3_6kvs6")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3ucr"]
+atlas = ExtResource("3_6kvs6")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mmy5d"]
+atlas = ExtResource("3_6kvs6")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7ldib"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrmfs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66snt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0yg7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sw2op")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b3ucr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mmy5d")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uubgs"]
+size = Vector2(8, 16)
+
+[node name="Flyer" type="CharacterBody2D" unique_id=1889472994 groups=["enemies", "energy_gaining"]]
+collision_layer = 4
+collision_mask = 193
+script = ExtResource("1_72bxv")
+
+[node name="PlayerDetectionRadius" type="Area2D" parent="." unique_id=1181357868]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionRadius" unique_id=1589767411]
+shape = SubResource("CircleShape2D_lrmfs")
+
+[node name="LosePlayerRadius" type="Area2D" parent="." unique_id=1873072265]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LosePlayerRadius" unique_id=448526914]
+shape = SubResource("CircleShape2D_66snt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=62056824]
+material = ExtResource("2_jscao")
+position = Vector2(0, 12)
+sprite_frames = SubResource("SpriteFrames_7ldib")
+animation = &"idle"
+offset = Vector2(0, -12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1500811874]
+shape = SubResource("RectangleShape2D_uubgs")
+
+[node name="FiniteStateMachine" type="Node" parent="." unique_id=1602473878 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_kefto")
+initial_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://w6r4fliln4v5"
+
+[node name="Idle" type="Node" parent="FiniteStateMachine" unique_id=1062045893]
+script = ExtResource("5_6kvs6")
+hover_radius = 30.0
+hover_speed = 25.0
+metadata/_custom_type_script = "uid://w6r4fliln4v5"
+
+[node name="Death" type="Node" parent="FiniteStateMachine" unique_id=1051133370]
+script = ExtResource("5_72bxv")
+metadata/_custom_type_script = "uid://w6r4fliln4v5"
+
+[node name="Hit" type="Node" parent="FiniteStateMachine" unique_id=608652713]
+script = ExtResource("6_72bxv")
+metadata/_custom_type_script = "uid://w6r4fliln4v5"
+
+[node name="Chase" type="Node" parent="FiniteStateMachine" unique_id=860399015]
+script = ExtResource("8_66snt")
+metadata/_custom_type_script = "uid://w6r4fliln4v5"
+
+[node name="MoveComponent" parent="." unique_id=235093058 instance=ExtResource("10_ltday")]
+
+[node name="KnockbackComponent" parent="." unique_id=384703253 node_paths=PackedStringArray("hurtbox_component") instance=ExtResource("11_tp1or")]
+hurtbox_component = NodePath("../HurtboxComponent")
+
+[node name="HealthComponent" parent="." unique_id=1333011245 instance=ExtResource("9_5mngh")]
+
+[node name="SquashStretchComponent" parent="." unique_id=843710349 node_paths=PackedStringArray("sprite", "hurtbox_component") instance=ExtResource("13_y4ndw")]
+sprite = NodePath("../AnimatedSprite2D")
+hurtbox_component = NodePath("../HurtboxComponent")
+
+[node name="HurtboxComponent" parent="." unique_id=580697701 node_paths=PackedStringArray("health_component") instance=ExtResource("14_wcsl3")]
+sound = ExtResource("13_lrmfs")
+health_component = NodePath("../HealthComponent")
+
+[node name="HitboxComponent" parent="." unique_id=712061374 instance=ExtResource("16_eri07")]
+
+[editable path="HurtboxComponent"]

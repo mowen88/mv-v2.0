@@ -12,9 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://dub6vrea454ju" path="res://states/world_state/message_scene/message.tscn" id="9_sq4su"]
 [ext_resource type="Shader" uid="uid://c5kpkcvjklrxh" path="res://core/shaders/sprite_flash_shader.gdshader" id="10_0hyne"]
 [ext_resource type="PackedScene" uid="uid://bxl5e354ojig4" path="res://states/world_state/environment/collectibles/ability.tscn" id="12_0hyne"]
+[ext_resource type="PackedScene" uid="uid://bksau07opdi8h" path="res://states/world_state/entities/characters/enemies/flyer/flyer.tscn" id="13_13siy"]
 [ext_resource type="PackedScene" uid="uid://ipqjqw5hxc52" path="res://states/world_state/entities/characters/NPCs/NPC_1/npc_1.tscn" id="14_13siy"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0hyne"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_13siy"]
 resource_local_to_scene = true
 shader = ExtResource("10_0hyne")
 shader_parameter/flash_active = false
@@ -83,7 +84,7 @@ position = Vector2(130, 120)
 position = Vector2(130, 120)
 
 [node name="SecretWall" parent="SecretWalls" index="0" unique_id=1032635385 instance=ExtResource("9_j2bjc")]
-material = SubResource("ShaderMaterial_0hyne")
+material = SubResource("ShaderMaterial_13siy")
 position = Vector2(108, 76)
 
 [node name="CanvasGroup" parent="SecretWalls/SecretWall" index="0" unique_id=732142432]
@@ -191,6 +192,9 @@ position = Vector2(130, 120)
 
 [node name="Enemies" parent="." index="20" unique_id=978055959]
 position = Vector2(130, 120)
+
+[node name="Flyer" parent="Enemies" index="0" unique_id=1889472994 instance=ExtResource("13_13siy")]
+position = Vector2(31, 0)
 
 [node name="NPC1" parent="." index="21" unique_id=1014089368 instance=ExtResource("14_13siy")]
 position = Vector2(162, 180)
