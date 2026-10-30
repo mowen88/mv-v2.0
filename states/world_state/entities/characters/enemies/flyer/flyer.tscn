@@ -75,6 +75,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uubgs"]
 size = Vector2(8, 16)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_66snt"]
+
 [node name="Flyer" type="CharacterBody2D" unique_id=1889472994 groups=["enemies", "energy_gaining"]]
 collision_layer = 4
 collision_mask = 193
@@ -131,6 +133,7 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="KnockbackComponent" parent="." unique_id=384703253 node_paths=PackedStringArray("hurtbox_component") instance=ExtResource("11_tp1or")]
 hurtbox_component = NodePath("../HurtboxComponent")
+bounce = 0.0
 
 [node name="HealthComponent" parent="." unique_id=1333011245 instance=ExtResource("9_5mngh")]
 
@@ -143,5 +146,13 @@ sound = ExtResource("13_lrmfs")
 health_component = NodePath("../HealthComponent")
 
 [node name="HitboxComponent" parent="." unique_id=712061374 instance=ExtResource("16_eri07")]
+collision_layer = 0
+collision_mask = 2
+knockback_force = 60.0
+
+[node name="CollisionShape2D" parent="HitboxComponent" index="0" unique_id=1317764610]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_66snt")
 
 [editable path="HurtboxComponent"]
+[editable path="HitboxComponent"]

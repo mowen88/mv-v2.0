@@ -31,12 +31,14 @@ func update(delta: float) -> void:
 	var direction = current_position.direction_to(target_position)
 	var distance = current_position.distance_to(target_position)
 	
-	if distance > 2.0:
+	if distance > 0.0:
 		owner.velocity = owner.velocity.move_toward(direction * hover_speed, hover_speed * delta * 4.0)
 	else:
 		owner.velocity = owner.velocity.move_toward(Vector2.ZERO, hover_speed * delta * 4.0)
 	
-
+	# Set facing as per direction
+	owner.move_component.set_facing(sign(owner.velocity.x))
+	
 	# Keeps tile collisions active so it floats around obstacles naturally
 	owner.move_and_slide()
 

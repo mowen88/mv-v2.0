@@ -197,7 +197,7 @@ func x_input(_delta: float) -> void:
 		
 	# If not input locked, set zdirection as per the relevant input
 	move_component.direction = Input.get_axis("move_left", "move_right")
-
+	
 # Testing inputs - not to be shipped !!!!
 func _unhandled_input(event: InputEvent) -> void:
 	if InputManager.cutscene_lock or InputManager.input_lock:

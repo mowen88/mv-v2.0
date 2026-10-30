@@ -115,8 +115,6 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="Hit" type="Node" parent="FiniteStateMachine" unique_id=608652713]
 script = ExtResource("7_n1w0g")
-knockback_force = null
-stun_duration = null
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="HealthComponent" parent="." unique_id=1333011245 instance=ExtResource("8_7ldib")]

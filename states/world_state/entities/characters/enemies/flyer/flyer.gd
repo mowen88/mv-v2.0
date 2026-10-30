@@ -21,15 +21,7 @@ func _ready() -> void:
 	health_component.died.connect(_on_death)
 	vision_area.body_entered.connect(_on_body_entered)
 	lose_player_area.body_exited.connect(_on_body_exited)
-
-func override_facing() -> void:
-	if attack_target == null:
-		return
-	var x_difference = attack_target.global_position.x - global_position.x
 	
-	if abs(x_difference) > 0.0:
-		move_component.facing = int(sign(x_difference))
-
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player") and health_component.current_health > 0:
 		attack_target = body
@@ -46,6 +38,7 @@ func _on_death() -> void:
 	
 	fsm.change_state("Death")
 
+
 #Testing with input - to be deleted for shipping !!!!
 func _unhandled_input(event: InputEvent) -> void:
 
@@ -54,8 +47,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		#health_component.damage(1)
 		#print(health_component.current_health)
 		pass
-
-func _process(delta: float) -> void:
-	print(fsm.current_state.name)
-	
+#
+#func _process(delta: float) -> void:
+	#print(fsm.current_state.name)
+	#
 	

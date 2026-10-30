@@ -45,10 +45,13 @@ func is_on_slope() -> bool:
 				
 	return false
 
+func set_facing(direction: int) -> void:
+	self.facing = int(sign(direction))
+
 func process_movement(delta: float) -> void:
 
 	if direction != 0:
-		self.facing = int(sign(direction))
+		set_facing(direction)
 		
 		# Smoothly accelerate toward maximum run speed
 		owner.velocity.x = move_toward(owner.velocity.x, direction * speed, acceleration * delta)

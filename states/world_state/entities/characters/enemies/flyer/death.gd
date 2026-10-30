@@ -2,7 +2,6 @@ extends State
 
 func enter() -> void:
 	#owner.get_node("AnimatedSprite2D").play("idle")
-	owner.override_facing()
 	
 	# Queue free after set time
 	var timer = owner.get_tree().create_timer(4)

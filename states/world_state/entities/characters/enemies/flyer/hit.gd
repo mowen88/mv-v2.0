@@ -9,17 +9,12 @@ func enter() -> void:
 	timer = stun_duration
 	# Play a "hit" animation if you have one
 	owner.get_node("AnimatedSprite2D").play("idle")
+	owner.vision_area.monitoring = false
+	owner.lose_player_area.monitoring = false
 
 func physics_update(delta: float) -> void:
 	# Increment timer
 	timer -= delta
 	
-	# Add gravity
-	owner.velocity.y = min(owner.velocity.y + owner.move_component.gravity * delta,\
-	owner.move_component.max_fall_speed)
-	
-	
-	owner.move_and_slide()
-	
 	if timer <= 0:
-		fsm.change_state("Hit")
+		fsm.change_state("Chase")

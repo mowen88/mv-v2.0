@@ -11,11 +11,13 @@
 [ext_resource type="PackedScene" uid="uid://bhuxdkfjd8yie" path="res://states/world_state/environment/hazards/spikes.tscn" id="6_3grma"]
 [ext_resource type="Shader" uid="uid://852afqaskhkl" path="res://core/shaders/godray_sprite_shader.gdshader" id="6_se67a"]
 [ext_resource type="PackedScene" uid="uid://0oqxdpjjeqp0" path="res://states/world_state/environment/respawn_area/respawn_area.tscn" id="8_8dds4"]
+[ext_resource type="PackedScene" uid="uid://o2651qiy5vxt" path="res://states/world_state/environment/save_station/save_station.tscn" id="12_hhens"]
+[ext_resource type="PackedScene" uid="uid://bksau07opdi8h" path="res://states/world_state/entities/characters/enemies/flyer/flyer.tscn" id="12_r5f2l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hhens"]
 shader = ExtResource("6_se67a")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_se67a"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_36wyp"]
 resource_local_to_scene = true
 shader = ExtResource("5_3grma")
 shader_parameter/flash_active = false
@@ -159,7 +161,7 @@ rotation = 2.3561945
 position = Vector2(528, 120)
 
 [node name="SecretWall" parent="SecretWalls" index="0" unique_id=1032635385 instance=ExtResource("4_pytp8")]
-material = SubResource("ShaderMaterial_se67a")
+material = SubResource("ShaderMaterial_36wyp")
 position = Vector2(-484, 52)
 
 [node name="CanvasGroup" parent="SecretWalls/SecretWall" index="0" unique_id=732142432]
@@ -263,7 +265,7 @@ position = Vector2(528, 120)
 position = Vector2(528, 120)
 
 [node name="0" type="Marker2D" parent="Spawns" index="0" unique_id=495794101]
-position = Vector2(-288, -48)
+position = Vector2(188, 72)
 
 [node name="1" type="Marker2D" parent="Spawns" index="1" unique_id=729201492]
 position = Vector2(-520, 56)
@@ -288,8 +290,14 @@ position = Vector2(528, 120)
 [node name="Enemies" parent="." index="19" unique_id=978055959]
 position = Vector2(528, 120)
 
+[node name="Flyer" parent="Enemies" index="0" unique_id=1889472994 instance=ExtResource("12_r5f2l")]
+position = Vector2(288, 10)
+
 [node name="Gauntlet" parent="." index="20" unique_id=1813862647]
 position = Vector2(528, 120)
+
+[node name="SaveStation" parent="." index="21" unique_id=879487149 instance=ExtResource("12_hhens")]
+position = Vector2(716, 184)
 
 [editable path="Decoration/Waterfall"]
 [editable path="SecretWalls/SecretWall"]

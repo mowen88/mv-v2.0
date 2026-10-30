@@ -7,7 +7,6 @@ var timer: float = 0.0
 
 func enter() -> void:
 	timer = stun_duration
-	# Play a "hit" animation if you have one
 	owner.get_node("AnimatedSprite2D").play("idle")
 
 func physics_update(delta: float) -> void:

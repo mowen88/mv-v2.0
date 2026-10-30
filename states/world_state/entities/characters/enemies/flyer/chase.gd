@@ -11,15 +11,12 @@ func update(delta: float) -> void:
 	if not owner.attack_target:
 		return
 	
-	owner.override_facing()
-	
 	# Chase the player reference
 	var direction = owner.global_position.direction_to(owner.attack_target.global_position)
 	var target_velocity = direction * speed
 	owner.velocity = owner.velocity.move_toward(target_velocity, speed * delta * 6.0)
 
 	# Handle facing
-	if abs(owner.velocity.x) > 0.5:
-		owner.move_component.facing = int(sign(owner.velocity.x))
+	owner.move_component.set_facing(sign(direction.x))
 
 	owner.move_and_slide()
