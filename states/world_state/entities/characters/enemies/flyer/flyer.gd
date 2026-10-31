@@ -22,13 +22,19 @@ func _ready() -> void:
 	vision_area.body_entered.connect(_on_body_entered)
 	lose_player_area.body_exited.connect(_on_body_exited)
 	
+	fsm.initialize()
+	
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player") and health_component.current_health > 0:
+	if body.is_in_group("player")\
+	and fsm.current_state.name == "Idle"\
+	and health_component.current_health > 0:
 		attack_target = body
 		fsm.change_state("Chase")
 
 func _on_body_exited(body: Node2D) -> void:
-	if body.is_in_group("player") and health_component.current_health > 0:
+	if body.is_in_group("player")\
+	and fsm.current_state.name == "Chase"\
+	and health_component.current_health > 0:
 		fsm.change_state("Idle")
 			
 func _on_death() -> void:

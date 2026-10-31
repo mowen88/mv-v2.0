@@ -7,7 +7,7 @@ var timer: float = 0.0
 
 func enter() -> void:
 	timer = stun_duration
-	owner.get_node("AnimatedSprite2D").play("idle")
+	owner.animated_sprite.play("idle")
 
 func physics_update(delta: float) -> void:
 	# Increment timer

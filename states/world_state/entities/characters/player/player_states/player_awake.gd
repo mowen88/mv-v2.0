@@ -7,7 +7,7 @@ var timer: float = 0.0
 
 func enter() -> void:
 	timer = 0.0
-	owner.get_node("AnimatedSprite2D").play("awake")
+	owner.animated_sprite.play("awake")
 
 func physics_update(delta: float) -> void:
 	timer += delta

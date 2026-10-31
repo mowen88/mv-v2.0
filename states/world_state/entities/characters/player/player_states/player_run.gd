@@ -2,7 +2,7 @@ extends State
 class_name PlayerRun
 
 func enter() -> void:
-	owner.get_node("AnimatedSprite2D").play("run")
+	owner.animated_sprite.play("run")
 	
 func handle_input(event: InputEvent) -> void:
 	if event.is_action_pressed("down"):

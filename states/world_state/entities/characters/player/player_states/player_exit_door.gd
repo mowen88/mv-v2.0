@@ -8,7 +8,7 @@ func enter() -> void:
 	owner.velocity.x = 0
 	
 	timer = duration
-	owner.get_node("AnimatedSprite2D").play("exit_door")
+	owner.animated_sprite.play("exit_door")
 #
 func physics_update(delta: float) -> void:
 	# Safely start fade in after room transitioned using input lock flag

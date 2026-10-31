@@ -4,7 +4,7 @@ class_name PlayerGlide
 @export var glide_gravity: float
 
 func enter() -> void:
-	owner.get_node("AnimatedSprite2D").play("heal")
+	owner.animated_sprite.play("heal")
 
 func handle_input(event: InputEvent) -> void:
 

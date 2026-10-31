@@ -5,7 +5,7 @@ var gravity: float
 
 func enter() -> void:
 	
-	owner.get_node("AnimatedSprite2D").play("jump")
+	owner.animated_sprite.play("jump")
 	
 	owner.jump_counter += 1
 	owner.velocity.y = owner.move_component.jump_velocity

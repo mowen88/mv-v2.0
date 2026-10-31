@@ -8,7 +8,7 @@ var go_to_special:bool = true
 func enter() -> void:
 	# Animate
 	owner.air_attack_count += 1
-	owner.get_node("AnimatedSprite2D").play("air_attack")
+	owner.animated_sprite.play("air_attack")
 	owner.sword.attack(owner.move_component.facing)
 
 	owner.get_node("AttackTimer").start()

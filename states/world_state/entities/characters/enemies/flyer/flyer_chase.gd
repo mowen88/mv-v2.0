@@ -1,10 +1,9 @@
-
 extends State
 
-@export var speed: float = 70.0  
+@export var speed: float = 40.0  
 
 func enter() -> void:
-	owner.get_node("AnimatedSprite2D").play("idle")
+	owner.animated_sprite.play("idle")
 
 func update(delta: float) -> void:
 	# Safety check

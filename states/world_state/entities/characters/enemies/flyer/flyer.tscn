@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://qfvpjndnus0m" path="res://states/world_state/entities/characters/enemies/flyer/flyer.gd" id="1_72bxv"]
 [ext_resource type="Material" uid="uid://bu4tbilew6k7v" path="res://core/shaders/sprite_flash_shader.tres" id="2_jscao"]
-[ext_resource type="Texture2D" uid="uid://dxau4rc26it6f" path="res://states/world_state/entities/characters/enemies/flyer/flyer_spritesheet.png" id="3_6kvs6"]
+[ext_resource type="Texture2D" uid="uid://dxau4rc26it6f" path="res://states/world_state/entities/characters/enemies/flyer/spritesheets/flyer_spritesheet.png" id="3_6kvs6"]
 [ext_resource type="Script" uid="uid://diq7imuclpv4v" path="res://states/world_state/entities/characters/finite_state_machine/finite_state_machine.gd" id="4_kefto"]
-[ext_resource type="Script" uid="uid://cls8wcywbci0r" path="res://states/world_state/entities/characters/enemies/flyer/idle.gd" id="5_6kvs6"]
-[ext_resource type="Script" uid="uid://b4c2gq7m51nsg" path="res://states/world_state/entities/characters/enemies/flyer/death.gd" id="5_72bxv"]
-[ext_resource type="Script" uid="uid://cc87wc3e1urtq" path="res://states/world_state/entities/characters/enemies/flyer/hit.gd" id="6_72bxv"]
-[ext_resource type="Script" uid="uid://bbyn0coqhgxsk" path="res://states/world_state/entities/characters/enemies/flyer/chase.gd" id="8_66snt"]
+[ext_resource type="Script" uid="uid://cls8wcywbci0r" path="res://states/world_state/entities/characters/enemies/flyer/flyer_idle.gd" id="5_6kvs6"]
+[ext_resource type="Script" uid="uid://b4c2gq7m51nsg" path="res://states/world_state/entities/characters/enemies/flyer/flyer_death.gd" id="5_72bxv"]
+[ext_resource type="Script" uid="uid://cc87wc3e1urtq" path="res://states/world_state/entities/characters/enemies/flyer/flyer_hit.gd" id="6_72bxv"]
+[ext_resource type="Script" uid="uid://bbyn0coqhgxsk" path="res://states/world_state/entities/characters/enemies/flyer/flyer_chase.gd" id="8_66snt"]
 [ext_resource type="PackedScene" uid="uid://c6sj10estib1c" path="res://states/world_state/components/health_component.tscn" id="9_5mngh"]
 [ext_resource type="PackedScene" uid="uid://c12tbs10lxuco" path="res://states/world_state/components/move_component.tscn" id="10_ltday"]
 [ext_resource type="PackedScene" uid="uid://bq2r808rtkdp" path="res://states/world_state/components/knockback_component.tscn" id="11_tp1or"]
@@ -127,6 +127,7 @@ metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="Chase" type="Node" parent="FiniteStateMachine" unique_id=860399015]
 script = ExtResource("8_66snt")
+speed = 40.0
 metadata/_custom_type_script = "uid://w6r4fliln4v5"
 
 [node name="MoveComponent" parent="." unique_id=235093058 instance=ExtResource("10_ltday")]

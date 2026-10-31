@@ -20,10 +20,10 @@ const STAR_JUMP_VELOCITY: float = -360.0
 
 @onready var slide_sound_stream: AudioStreamPlayer2D = $SlideSoundStream
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var fsm: FiniteStateMachine = $FiniteStateMachine
 @onready var move_component: MoveComponent = $MoveComponent
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var energy_component: EnergyComponent = $EnergyComponent
+
 
 @onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
 @onready var knockback_component: KnockbackComponent = $KnockbackComponent
@@ -38,6 +38,8 @@ const STAR_JUMP_VELOCITY: float = -360.0
 @onready var jump_buffer_timer: Timer = $JumpBufferTimer
 @onready var coyote_timer: Timer = $CoyoteTimer
 
+@onready var fsm: FiniteStateMachine = $FiniteStateMachine
+
 var last_safe_position: Vector2 = Vector2.ZERO
 var jump_counter: int = 0
 var air_attack_count: int = 0
@@ -48,7 +50,7 @@ var banked_coins: int = 0
 var session_visited_rooms: Array = []
 		
 func _ready() -> void:	
-	
+
 	_get_initial_coins()
 	_get_initial_energy()
 	_get_initial_health()
@@ -73,6 +75,8 @@ func _ready() -> void:
 	
 	# Get swipe signal
 	SignalBus.swipe_down_detected.connect(_on_swipe_down)
+	
+	fsm.initialize()
 
 func spawn_ghost() -> void:
 	var ghost = GHOST_SCENE.instantiate() as Sprite2D

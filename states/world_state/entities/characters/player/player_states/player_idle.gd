@@ -3,7 +3,7 @@ extends State
 class_name PlayerIdle
 
 func enter() -> void:
-	owner.get_node("AnimatedSprite2D").play("idle")
+	owner.animated_sprite.play("idle")
 	
 func handle_input(event: InputEvent) -> void:
 	if event.is_action_pressed("down"):

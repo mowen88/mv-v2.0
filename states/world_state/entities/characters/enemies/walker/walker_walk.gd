@@ -1,7 +1,7 @@
 extends State
 
 func enter() -> void:
-	owner.get_node("AnimatedSprite2D").play("idle")
+	owner.animated_sprite.play("idle")
 
 # Inside walker_patrol.gd (An enemy AI state)
 func physics_update(_delta: float) -> void:

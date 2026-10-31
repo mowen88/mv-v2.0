@@ -7,7 +7,7 @@ class_name FiniteStateMachine
 var current_state: State
 var states: Dictionary = {}
 
-func _ready() -> void:
+func initialize() -> void:
 	# register all states
 	for state in get_children():
 		if state is State:

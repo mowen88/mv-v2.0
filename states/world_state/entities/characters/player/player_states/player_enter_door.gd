@@ -1,7 +1,7 @@
 extends State
 
 func enter() -> void:
-	owner.get_node("AnimatedSprite2D").play("climb")
+	owner.animated_sprite.play("climb")
 	# Clear heal particles if swiped up over the heal button
 	owner.heal_particles.emitting = false
 	

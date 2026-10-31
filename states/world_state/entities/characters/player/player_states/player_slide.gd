@@ -2,7 +2,7 @@ extends State
 
 func enter() -> void:
 	
-	owner.get_node("AnimatedSprite2D").play("slide")
+	owner.animated_sprite.play("slide")
 	
 	owner.slide_sound_stream.play()
 	

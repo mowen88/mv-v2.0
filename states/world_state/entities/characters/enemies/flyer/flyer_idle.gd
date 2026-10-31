@@ -10,7 +10,7 @@ var target_offset: Vector2 = Vector2.ZERO
 var timer: float = 0.0
 
 func enter() -> void:
-	owner.get_node("AnimatedSprite2D").play("idle")
+	owner.animated_sprite.play("idle")
 	anchor_position = owner.global_position
 	_get_new_target_offset()
 	timer = 0.0
@@ -31,7 +31,7 @@ func update(delta: float) -> void:
 	var direction = current_position.direction_to(target_position)
 	var distance = current_position.distance_to(target_position)
 	
-	if distance > 0.0:
+	if distance > 2.0:
 		owner.velocity = owner.velocity.move_toward(direction * hover_speed, hover_speed * delta * 4.0)
 	else:
 		owner.velocity = owner.velocity.move_toward(Vector2.ZERO, hover_speed * delta * 4.0)

@@ -1,9 +1,6 @@
 class_name Walker
 extends CharacterBody2D
 
-
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var fsm: FiniteStateMachine = $FiniteStateMachine
 @onready var move_component: MoveComponent = $MoveComponent
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
@@ -13,8 +10,13 @@ extends CharacterBody2D
 @onready var squash_stretch_component: SquashStretchComponent = $SquashStretchComponent
 @onready var floor_check: RayCast2D = $FloorCheckRayCast
 
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var fsm: FiniteStateMachine = $FiniteStateMachine
+
 func _ready() -> void:
 	health_component.died.connect(_on_death)
+	
+	fsm.initialize()
 
 func _on_death() -> void:
 	set_collision_mask_value(2, false)

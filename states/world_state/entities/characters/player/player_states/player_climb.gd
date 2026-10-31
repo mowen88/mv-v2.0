@@ -1,7 +1,7 @@
 extends State
 
 func enter() -> void:
-	owner.get_node("AnimatedSprite2D").play("climb")
+	owner.animated_sprite.play("climb")
 	owner.velocity = Vector2(0,0)
 
 func physics_update(_delta: float) -> void:

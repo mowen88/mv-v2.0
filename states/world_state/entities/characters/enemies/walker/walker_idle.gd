@@ -1,7 +1,7 @@
 extends State
 
 func enter() -> void:
-	owner.get_node("AnimatedSprite2D").play("idle")
+	owner.animated_sprite.play("idle")
 	
 	# Get variable timer and switch state when complete
 	#var timer = owner.get_tree().create_timer(randf_range(1.0, 2.0))

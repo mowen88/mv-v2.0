@@ -3,7 +3,7 @@ extends State
 @export var death_particle: String
 
 func enter() -> void:
-	owner.get_node("AnimatedSprite2D").play("idle")
+	owner.animated_sprite.play("idle")
 	
 	# Queue free after set time
 	var timer = owner.get_tree().create_timer(1)

@@ -7,7 +7,7 @@ var go_to_special:bool = true
 
 func enter() -> void:
 	# Animate
-	owner.get_node("AnimatedSprite2D").play("attack")
+	owner.animated_sprite.play("attack")
 	owner.sword.attack(owner.move_component.facing)
 	go_to_special = true
 
